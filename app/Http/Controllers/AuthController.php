@@ -5,27 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
+
 class AuthController extends Controller
 {
-    //
-    public function user(){
-       return "hello";
-        // return Auth::user();
-    }
-
-
     //add new user
     public function register(Request $request ){
-        $fields = $request->validate([
+        $data = $this::_validate($request, [
             'nom'=>'required|max:25',
             'prenom'=>'required|max:25',
             'email'=>'required|email|unique:users,email',
             'telephone'=>'required|between:10,13',
             'password'=>'required',
-            'role'=>'required'
+            'role'=>'required',
         ]);
+
+        if ($data instanceof Response) return $data;
+
+        $fields = $data;
 
         $user = User::create([
             'nom'=>$fields['nom'],
@@ -70,30 +68,37 @@ class AuthController extends Controller
     }
 
     //logging
-    public function login(Request $request){
-        $request->validate([
-            'email' => 'required',
+    public function login(Request $request) {
+        $data = $this::_validate($request, [
+            'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        if ($data instanceof Response) return $data;
+
+        $email = $data['email'];
+        $password = $data['password'];
 
        if(!Auth::attempt(['email' => $email, 'password' => $password])){
            return response([
             'message'=>'inccorect'
            ],401);
            //401 HTTP UNAUTHORIZED
-       } 
-       $user = Auth::user();
-       $token=$user->createToken('token')->plainTextToken;
+       }
+
+       $user = $this::_user();
+       $token= $user->createToken('token')->plainTextToken;
        $cookie=cookie('jwt',$token,60*48);
+
        return response([
            'message'=>'Success'
-       ])->withCookie($cookie);
+       ], 200)->withCookie($cookie);
     }
 
     //log out
 
     public function logout(){
-        $cookie=Cookie::forget('jwt');
+        $cookie = Cookie::forget('jwt');
         return response([
             'message'=>'Success'
         ])->withCookie($cookie);
