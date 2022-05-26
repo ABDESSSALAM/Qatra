@@ -105,3 +105,34 @@ export const DataVolontaire =[
         telephone:'0678451236'
     },
 ]
+
+export const DataAssociation=[
+    {
+        id:1,
+        nom:'Association 1',
+        ville:'Meknes',
+        telephone:'0678451236',
+        Etat:1
+    },
+    {
+        id:2,
+        nom:'Association 2',
+        telephone:'0678451236',
+        ville:'Fes',
+        Etat:1
+    },
+    {
+        id:3,
+        nom:'Association 3',
+        telephone:'0678451236',
+        ville:'Rabat',
+        Etat:0
+    },
+    {
+        id:4,
+        nom:'Association 4',
+        telephone:'0678451236',
+        ville:'Meknes',
+        Etat:0
+    },
+]

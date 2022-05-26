@@ -27,4 +27,5 @@ class AuthServiceProvider extends ServiceProvider
 
         //
     }
+    protected $namespace='App\Http\Controllers';
 }

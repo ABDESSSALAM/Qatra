@@ -13,7 +13,9 @@ import Statistics from "./pages/Dashboard/Statistics";
 import Level2 from "./ProtectedRoutes/Level2";
 import SideBar from "./components/Dashboard/SideBar";
 import Navbar from './components/Dashboard/Navbar';
-
+import HomeCarnaval from "./pages/HomeCarnaval";
+import HomeCentre from "./pages/Components/HomeCentre";
+import HomeNav from "./pages/Components/HomeNav";
 
 function View() {
     const [open,setopen]=useState(true);
@@ -27,6 +29,8 @@ function View() {
             <Route index element={<Home/>} />
             <Route path="login" element={<Login/>} />
             <Route path="register" element={<Register/>} />
+            <Route path="carnaval" element={<HomeCarnaval/>}/>
+            <Route path="centre" element={<HomeCentre />}/>
             {/* user role 2 router */}
             
             <Route element={<Level2/>}>

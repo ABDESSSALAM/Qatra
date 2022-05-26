@@ -1,18 +1,21 @@
 import React from 'react'
-import axios from 'axios'
-const baseUrl='http://127.0.0.1:8000/api/user';
-
+import Header from './Components/Header'
+import HomeNav from './Components/HomeNav'
+import Cards from './Components/Cards'
+import Information from './Components/Information'
+import Footer from './Components/Footer'
 
 function Home() {
-  const test = async ()=>{
-    await axios.get(baseUrl).then(({dt})=>{
-      console.log(dt)
-    })
-  }
+  
   return (
-    <div>
-      <button onClick={test}>tester</button>
-    </div>
+    <>
+      <Header />
+      <HomeNav />
+      <Cards />
+      <Information />
+      <Information />
+      <Footer />
+    </>
   )
 }
 

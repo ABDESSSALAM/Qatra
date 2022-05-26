@@ -64,8 +64,8 @@ class AuthController extends Controller
             'role'=>$data['role']
         ]);
         */
-
     }
+    
 
     //logging
     public function login(Request $request) {

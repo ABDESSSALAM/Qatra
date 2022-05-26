@@ -3,7 +3,7 @@ import CarnavalTable from './Compenent/CarnavalTable';
 
 
 function Carnaval() {
-  const [open,setopen]=useState(true);
+  const [open,setopen]=useState(false);
   const toggleOpen=()=>{
     setopen(!open)}
 
