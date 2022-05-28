@@ -1,8 +1,7 @@
 import {  Outlet, Route,Routes } from "react-router-dom";
 import React,{useState} from 'react'
-import Home from "./pages/Home";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
+import Home from "./pages/Home/Home";
+import AuthWrapper from "./pages/Auth/AuthWrapper";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Carnaval from "./pages/Dashboard/Carnaval";
@@ -13,9 +12,13 @@ import Statistics from "./pages/Dashboard/Statistics";
 import Level2 from "./ProtectedRoutes/Level2";
 import SideBar from "./components/Dashboard/SideBar";
 import Navbar from './components/Dashboard/Navbar';
-import HomeCarnaval from "./pages/HomeCarnaval";
-import HomeCentre from "./pages/Components/HomeCentre";
-import HomeNav from "./pages/Components/HomeNav";
+import HomeCarnaval from "./pages/Home/HomeCarnaval";
+import HomeCentre from "./pages/Home/HomeCentre";
+import HomeNav from "./pages/Home/Components/HomeNav";
+import TopHeader from "./pages/Home/Components/TopHeader";
+import HomeLayout from "./pages/Home/Components/HomeLayout";
+import HomeAdvice from "./pages/Home/HomeAdvice";
+import HomeImportance from "./pages/Home/HomeImportance";
 
 function View() {
     const [open,setopen]=useState(true);
@@ -27,10 +30,13 @@ function View() {
         {/* public router */}
         <Route path="/">
             <Route index element={<Home/>} />
-            <Route path="login" element={<Login/>} />
-            <Route path="register" element={<Register/>} />
+            <Route path="login" element={<AuthWrapper/>} />
+            
+            
+            <Route path="centre" element={<HomeCentre />}/> 
             <Route path="carnaval" element={<HomeCarnaval/>}/>
-            <Route path="centre" element={<HomeCentre />}/>
+            <Route path="advice" element={<HomeAdvice/>}/>
+            <Route path="importance" element={<HomeImportance/>}/>
             {/* user role 2 router */}
             
             <Route element={<Level2/>}>

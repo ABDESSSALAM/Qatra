@@ -5,17 +5,18 @@ import Cards from './Components/Cards'
 import Information from './Components/Information'
 import Footer from './Components/Footer'
 
+
 function Home() {
   
   return (
-    <>
+    <div className='w-full h-full bg-gray-100'>
       <Header />
       <HomeNav />
       <Cards />
       <Information />
       <Information />
       <Footer />
-    </>
+    </div>
   )
 }
 

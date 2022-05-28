@@ -53,7 +53,7 @@ function AssociationInfo() {
      console.log(e.target.value)
    }
    return (
-     <div className='w-full bg-primary px-4 py-2 flex md:flex-col items-center  shadow-lg cursor-pointer md:h-72'>
+     <div className='w-full bg-primary px-4 py-2 flex md:flex-col items-center  shadow-lg cursor-pointer md:h-80'>
          <div className='w-full flex justify-center items-center h-1/3 border-b-2 border-white'>
              <h3 className='text-white text-6xl mr-11'>Association</h3>
              <i className="fa-solid fa-hospital-user text-white text-7xl"></i>

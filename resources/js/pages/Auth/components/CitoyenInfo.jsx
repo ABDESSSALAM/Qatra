@@ -8,8 +8,8 @@ function CitoyenInfo() {
     const groupSang=['A+','A-','B+','B-','AB+','AB-','O+','O-'];
     const ListGroupSang=groupSang.map((sg,idx)=><option key={idx} value={sg}>{sg}</option>)
     //style
-    const inputWrapper="flex mx-auto w-10/12   justify-around my-3";
-    const inputStyle="w-8/12 outline-none rounded-md px-3 text-lg";
+    const inputWrapper="flex mx-auto w-10/12   justify-around my-1";
+    const inputStyle="w-8/12 outline-none rounded-md px-2 text-lg";
     const spanStyle="w-4/12 text-white text-xl";
 
     //handle Form

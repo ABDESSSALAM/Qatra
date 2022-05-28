@@ -10,7 +10,7 @@ function Type() {
   }
   let Border= (Role ==1) ? "border-4  border-gray-300 " : ""
   return (
-    <div className='w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer  h-72 '> 
+    <div className='w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer  h-80 '> 
         
         <h3 className='text-white font-semibold text-4xl uppercase'>Inscription</h3>
         <div className="flex my-2">

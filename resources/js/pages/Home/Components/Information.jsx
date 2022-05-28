@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Information() {
+function Information(props,children) {
     const P_STYLE="text-md font-extralight my-2";
     const TITLE_STYLE="text-left text-secondary font-semibold text-xl mb-3"
   return (

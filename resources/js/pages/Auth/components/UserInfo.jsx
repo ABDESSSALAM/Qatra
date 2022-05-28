@@ -88,11 +88,11 @@ function UserInfo() {
 
     const inputStyle=" rounded-md px-3 text-xl outline-none py-1";
   return (
-    <div className='w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer h-72'>
+    <div className='w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer h-80'>
         <div className='w-full h-full flex flex-col px-3 items-stretch justify-between py-3'>
-        <div className=' flex justify-between'>
-            <input type="text" onChange={HandleInput}  name='Fname' placeholder='Nom' className={`${inputStyle}`} />
-            <input type="text" onChange={HandleInput} name="Lname" placeholder='Prénom' className={`${inputStyle}`}/>
+        <div className='flex justify-between'>
+            <input type="text" onChange={HandleInput}  name='Fname' placeholder='Nom' className={`${inputStyle} w-2/5`} />
+            <input type="text" onChange={HandleInput} name="Lname" placeholder='Prénom' className={`${inputStyle} w-2/5`}/>
         </div>
         <input type="email" onChange={HandleInput} name='Email' placeholder='Email' className={`${inputStyle}`}/>
         <input type="password" onChange={HandleInput} name="Pass" placeholder='Mot de pass' className={`${inputStyle}`} />

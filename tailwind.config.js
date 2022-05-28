@@ -111,6 +111,7 @@ module.exports = {
       72: '18rem',
       80: '20rem',
       96: '24rem',
+      98:'30rem',
       sq20:'20px',
     },
     animation: {

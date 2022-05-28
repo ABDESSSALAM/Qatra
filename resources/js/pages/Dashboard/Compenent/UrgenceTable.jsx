@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
 import { DataUrgence } from '../FakeData/DataCarnavals';
-import Home from '../../Home';
+import Home from '../../Home/Home';
 
 function UrgenceTable() {
     const DATA_HEADER=['Sanguin Groupe','Ville','Telephone','Hospitale','Etat'];
