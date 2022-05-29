@@ -1,13 +1,17 @@
 import { createContext,useState } from "react";
 
 export const UserContext=createContext({
-    User:null,
+    User:{},
     setUser:()=>{}
 })
 
 export const UserProvider=({children})=>{
-    const [User,setUser]=useState(null);
-    const contexValue={User,setUser};
+    const [user,setuser]=useState({email:'',pass:''});
+
+    const contexValue={
+        User:user,
+        setUser:setuser
+    };
 
     return (
         <UserContext.Provider value={contexValue}>

@@ -2,7 +2,7 @@ import React from 'react'
 import TopHeader from './TopHeader'
 function Header() {
   return (
-    <header className='flex flex-col container  bg-gray-100 px-2 py-1'>
+    <header className='flex flex-col container  px-2 py-1'>
         <TopHeader />
         <div className='bg-primary w-11/12 mx-auto h-72 my-3 flex justify-around py-0 opacity-95 text-white cursor-pointer'>
             <div className='h-full flex flex-col justify-center items-center'>

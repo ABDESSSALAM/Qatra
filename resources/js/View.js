@@ -10,13 +10,14 @@ import Urgences from "./pages/Dashboard/Urgences";
 import Association from "./pages/Dashboard/Association";
 import Statistics from "./pages/Dashboard/Statistics";
 import Level2 from "./ProtectedRoutes/Level2";
-import SideBar from "./components/Dashboard/SideBar";
-import Navbar from './components/Dashboard/Navbar';
+import SideBar from "./pages/Dashboard/Compenent/SideBar";
+
+import Navbar from "./pages/Dashboard/Compenent/Navbar";
 import HomeCarnaval from "./pages/Home/HomeCarnaval";
 import HomeCentre from "./pages/Home/HomeCentre";
-import HomeNav from "./pages/Home/Components/HomeNav";
-import TopHeader from "./pages/Home/Components/TopHeader";
-import HomeLayout from "./pages/Home/Components/HomeLayout";
+// import HomeNav from "./pages/Home/Components/HomeNav";
+// import TopHeader from "./pages/Home/Components/TopHeader";
+// import HomeLayout from "./pages/Home/Components/HomeLayout";
 import HomeAdvice from "./pages/Home/HomeAdvice";
 import HomeImportance from "./pages/Home/HomeImportance";
 
@@ -63,7 +64,7 @@ function View() {
                 </>
             
             }>
-                
+                <Route index element={<p>welcome back !!!</p>}/>
                 <Route  path="volontaire"  element={<Volontaire/>}/> 
                 <Route  path="uregence"  element={<Urgences/>}/> 
                 <Route path="carnaval" element={<Carnaval/>}/>  

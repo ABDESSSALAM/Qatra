@@ -1,8 +1,4 @@
 import React,{useState} from 'react';
-import ReactDOM from 'react-dom';
-
-import SideBar from '../../components/Dashboard/SideBar';
-import Navbar from '../../components/Dashboard/Navbar';
 
 function Dashboard({children}) {
     const [open,setopen]=useState(true);
@@ -29,7 +25,3 @@ function Dashboard({children}) {
 }
 
 export default Dashboard;
-
-if (document.getElementById('app')) {
-    ReactDOM.render(<Dashboard />, document.getElementById('app'));
-}

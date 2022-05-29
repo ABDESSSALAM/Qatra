@@ -9,7 +9,7 @@ import Footer from './Components/Footer'
 function Home() {
   
   return (
-    <div className='w-full h-full bg-gray-100'>
+    <div className='w-full h-full '>
       <Header />
       <HomeNav />
       <Cards />

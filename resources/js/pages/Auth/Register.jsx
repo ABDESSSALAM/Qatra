@@ -120,33 +120,6 @@ function Register() {
   const AssociationInfoValue={AssociationInfo,setAssociationInfo};
 
   return (
-    
-    // <div className='w-screen h-screen bg-green-400 flex flex-col justify-center items-center'>
-      
-    //   <Progress step={step} />
-    //   <form className='flex flex-col w-2/4  '>
-    //   <RoleContext.Provider value={RoleValue}>
-
-
-    //     <UserInfoContext.Provider value={UserInfoValue}>
-    //     <VolontaireContext.Provider value={VolontaireInfoValues}>
-    //     <DemandeContext.Provider value={DemandeInfoValue}>
-    //     <AssociationContext.Provider value={AssociationInfoValue}>
-    //         <Current  step={step} />
-    //     </AssociationContext.Provider>
-    //     </DemandeContext.Provider>
-    //     </VolontaireContext.Provider>
-    //     </UserInfoContext.Provider>
-         
-    //       <div className='flex justify-between w-full'>
-    //         <button onClick={prev} className={`${buttonsStyle}  bg-secondary  rounded-bl-md w-1/2`}>prev</button>
-    //         <button onClick={next}  className={`${buttonsStyle}  bg-green-500 rounded-br-mg w-1/2`}>next</button>
-    //       </div>
-    //     </RoleContext.Provider>  
-     
-    //   </form>
-     
-    // </div>
     <>
        <Progress step={step} />
       <form className='flex flex-col w-full  '>

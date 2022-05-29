@@ -10,7 +10,7 @@ function HomeLayout({children}) {
    
     <HomeNav />
     
-    <main className='w-full cursor-pointer '>{children}</main>
+    <main className='w-full cursor-pointer bg-primary py-2'>{children}</main>
     </div>
   )
 }
