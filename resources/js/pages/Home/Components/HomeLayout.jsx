@@ -8,7 +8,7 @@ function HomeLayout({children}) {
     <div className=''>
     <TopHeader />
    
-    <HomeNav />
+    {/* <HomeNav /> */}
     
     <main className='w-full cursor-pointer bg-primary py-2'>{children}</main>
     </div>

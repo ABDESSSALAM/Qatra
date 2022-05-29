@@ -11,7 +11,7 @@ function Home() {
   return (
     <div className='w-full h-full '>
       <Header />
-      <HomeNav />
+     
       <Cards />
       <Information />
       <Information />

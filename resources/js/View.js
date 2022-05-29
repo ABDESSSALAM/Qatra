@@ -15,11 +15,11 @@ import SideBar from "./pages/Dashboard/Compenent/SideBar";
 import Navbar from "./pages/Dashboard/Compenent/Navbar";
 import HomeCarnaval from "./pages/Home/HomeCarnaval";
 import HomeCentre from "./pages/Home/HomeCentre";
-// import HomeNav from "./pages/Home/Components/HomeNav";
-// import TopHeader from "./pages/Home/Components/TopHeader";
-// import HomeLayout from "./pages/Home/Components/HomeLayout";
+
 import HomeAdvice from "./pages/Home/HomeAdvice";
 import HomeImportance from "./pages/Home/HomeImportance";
+
+import WaitAssoc from "./pages/WaitAssoc";
 
 function View() {
     const [open,setopen]=useState(true);
@@ -32,7 +32,7 @@ function View() {
         <Route path="/">
             <Route index element={<Home/>} />
             <Route path="login" element={<AuthWrapper/>} />
-            
+            <Route path="waiting" element={<WaitAssoc />} />
             
             <Route path="centre" element={<HomeCentre />}/> 
             <Route path="carnaval" element={<HomeCarnaval/>}/>

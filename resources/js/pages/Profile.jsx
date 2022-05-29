@@ -1,10 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import HomeLayout from './Home/Components/HomeLayout';
 
 function Profile() {
   const params=useParams();
   return (
-    <div>Profile : {params.id} </div>
+       <HomeLayout>
+         <div>Profile : {params.id} </div>
+       </HomeLayout> 
+        
   )
 }
 

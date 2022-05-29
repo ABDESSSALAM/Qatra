@@ -42,28 +42,6 @@ class AuthController extends Controller
         ];
 
         return response($response, 201);
-
-
-
-      /* $feilds= $request->validate([
-            'nom'=>'required|max:25',
-            'prenom'=>'required|max:25',
-            'telephone'=>'required|between:10,13',
-            'email'=>'required|email|unique:users,email',
-            'password'=>'required',
-            'role'=>'required'
-        ]);
-
-        $data = $request->all();
-        return User.create([
-            'nom'=>$data['nom'],
-            'prenom'=>$data['prenom'],
-            'telephone'=>$data['telephone'],
-            'email'=>$data['email'],
-            'password'=>Hash::make($data['password']),
-            'role'=>$data['role']
-        ]);
-        */
     }
     
 

@@ -1,44 +1,52 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
+import { Navigate, } from 'react-router-dom';
 import { UserContext } from '../../../Context/UserContext';
 import MY_AXIOS from '../../components/API/MY_AXIOS';
+
 const LOGIN_URL='/login';
 
 
 function Login() {
   const inputStyle='text-lg outline-none rounded-md px-2 py-1';
-  const {Luser,setUser}=useContext(UserContext)
+  const {user,setUser}=useContext(UserContext)
   
   const [email,setEmail]=useState('');
   const [pass,setPass]=useState('');
   const [err,setErr]=useState('');
   const [logged,setLogged]=useState(false);
-  
-  const data={
-    email:email,
-    password:pass
-  }
- const  handleSubmit=async (e)=>{
+  useEffect(()=>{
+      
+    })
+
+   
+ const  handleSubmit= (e)=>{
     e.preventDefault();
-    console.log(data)
+    useEffect(()=>{
     try{
-      const response= await MY_AXIOS.post(
+      const response=  MY_AXIOS.post(
         LOGIN_URL,
-        JSON.stringify(data),
+        JSON.stringify(
+          {
+           email:email,
+          password:pass}
+          ),
         {
           headers:{'Content-Type':'application/json'},
-         
         });
         console.log(response.data.user)
-        const token=response.data.token;
-        const Role=response.data.role;
-        setUser({Role,token})
-        
-        
-          
-
-      
+        console.log(response.data.token)
+        setUser({
+          nom:response.data.user.nom,
+          prenom:response.data.user.prenom,
+          email:response.data.user.email,
+          role:response.data.user.role,
+          token:response.data.token,
+          isAuth:true
+        })
+        setUser(data);
       setLogged(true);
     }catch(err){
+      setErr(err)
       if(err.response){
         console.log(error.response)
       }else if(err.request){
@@ -46,11 +54,15 @@ function Login() {
       }else if(err.message){
         console.log('message')
       }
-    }
+    }  
+    },[user])
+    
   }
+  
   //chek
   if(logged){
-    console.log(Luser);
+    
+    return <Navigate to="/" />
   }
   return (
    
