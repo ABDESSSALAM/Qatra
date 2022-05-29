@@ -19,11 +19,11 @@ function Login() {
     })
 
    
- const  handleSubmit= (e)=>{
+ const  handleSubmit= async (e)=>{
     e.preventDefault();
-    useEffect(()=>{
+    
     try{
-      const response=  MY_AXIOS.post(
+      const response= await MY_AXIOS.post(
         LOGIN_URL,
         JSON.stringify(
           {
@@ -41,10 +41,11 @@ function Login() {
           email:response.data.user.email,
           role:response.data.user.role,
           token:response.data.token,
+          id:response.data.user.id,
           isAuth:true
         })
-        setUser(data);
-      setLogged(true);
+        
+        setLogged(true);
     }catch(err){
       setErr(err)
       if(err.response){
@@ -55,7 +56,7 @@ function Login() {
         console.log('message')
       }
     }  
-    },[user])
+    
     
   }
   

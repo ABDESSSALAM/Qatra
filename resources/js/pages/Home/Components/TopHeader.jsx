@@ -1,37 +1,45 @@
-import React from 'react'
+import React,{useContext,useState} from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../../../Context/UserContext'
 
 function TopHeader() {
+  const {user}=useContext(UserContext);
+ 
+  let loginState={title:'Log in',link:'/login'}
+ 
+  if(user!=null && user.isAuth){
+    console.log('isAuth')
+    const link='/profile/'+user.id;
+    
+      loginState={ title:'profile',link:link}
+  }
+
   const navItems=[
     {
-      id:1,
+      
       title:'Home',
       link:'/'
     }
     ,
     {
-      id:1,
+      
       title:'Importance',
       link:'/importance'
     }
     ,
     {
-      id:1,
+     
       title:'Conseils',
       link:'/advice'
     }
     ,
     {
-      id:1,
+      
       title:'Carnavals',
       link:'/carnaval'
     }
     ,
-    {
-      id:1,
-      title:'Log In',
-      link:'/login'
-    }
+    loginState
    ]
     const nav=navItems.map((item,idx)=><Link to={item.link} key={idx} className='p-2    text-center text-white  rounded-md text-lg border-r border-gray-50 hover:text-gray-400 hover:border-gray-400'>{item.title}</Link>)
   return (
