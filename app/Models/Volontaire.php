@@ -26,5 +26,26 @@ class Volontaire extends Model
         return $this->belongsTo(User::class, 'IdVolontaire');
     }
 
-    //many to many relation
+    //many to many with caranavale
+
+    /**
+     * The carnavals that belong to the Volontaire
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function carnavals(): BelongsToMany
+    {
+        return $this->belongsToMany(Carnavale::class, 'carnaval_volontaires', 'IdVolontaire', 'IdCarnaval');
+    }
+
+    //many to many with urgence
+   /**
+    * Get all of the urgences for the Volontaire
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function urgences(): HasMany
+   {
+       return $this->hasMany(Urgence::class, 'Volontaire');
+   }
 }

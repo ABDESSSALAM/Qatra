@@ -30,4 +30,14 @@ class Urgence extends Model
     {
         return $this->hasOne(Demande::class, 'IdUrg', 'IdUrg');
     }
+
+    /**
+     * Get the volontaire that owns the Urgence
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function volontaire(): BelongsTo
+    {
+        return $this->belongsTo(Volontaire::class, 'Volontaire');
+    }
 }
