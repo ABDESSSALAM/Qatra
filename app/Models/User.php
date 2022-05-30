@@ -46,5 +46,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     // relations
-    
+    /**
+     * Get the association associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function association(): HasOne
+    {
+        return $this->hasOne(Association::class, 'responsable');
+    }
+    /**
+     * Get the user associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function volontaire(): HasOne
+    {
+        return $this->hasOne(Volontaire::class, 'IdVolontaire');
+    }
+
+    /**
+     * Get the citoyen associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function citoyen(): HasOne
+    {
+        return $this->hasOne(Citoyen::class, 'IdCitoyen');
+    }
 }

@@ -13,15 +13,19 @@ class Association extends Model
 
     //relations
 
-    public function Ville(){
+    public function ville(){
         return $this->belognsTo(Ville::class);
     }
 
-    public function Caranavales(){
+    public function caranavales(){
         return $this->hasMany(Carnavale::class);
     }
 
-    public function Urgences(){
+    public function urgences(){
         return $this->hasMany(Urgence::class);
+    }
+
+    public function responsable(){
+        return $this->belongsTo(User::class,'responsable');
     }
 }

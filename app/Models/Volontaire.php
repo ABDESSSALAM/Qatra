@@ -12,7 +12,19 @@ class Volontaire extends Model
 
     //relations
 
-    public function Ville(){
+    public function ville(){
         return $this->belognsTo(Ville::class);
     }
+
+    /**
+     * Get the user that owns the Volontaire
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'IdVolontaire');
+    }
+
+    //many to many relation
 }

@@ -12,11 +12,22 @@ class Urgence extends Model
 
     //relations
 
-    public function Ville(){
+    public function ville(){
         return $this->belognsTo(Ville::class);
     }
     
-    public function Association(){
+    public function association(){
         return $this->belognsTo(Association::class);
+    }
+
+    // one to one with demande
+    /**
+     * Get the demande associated with the Urgence
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function demande(): HasOne
+    {
+        return $this->hasOne(Demande::class, 'IdUrg', 'IdUrg');
     }
 }

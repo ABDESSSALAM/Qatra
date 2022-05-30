@@ -12,10 +12,20 @@ class Carnavale extends Model
 
     //relations
 
-    public function Ville(){
+    public function ville(){
         return $this->belognsTo(Ville::class);
     }
-    public function Association(){
+    public function association(){
         return $this->belognsTo(Association::class);
+    }
+
+    /**
+     * The volontaires that belong to the Carnavale
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function volontaires(): BelongsToMany
+    {
+        return $this->belongsToMany(Volontaire::class, 'carnaval_volontaires', 'IdCarnaval', 'IdVolontaire');
     }
 }
