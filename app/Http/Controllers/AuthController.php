@@ -34,7 +34,8 @@ class AuthController extends Controller
             'role'=>$fields['role']
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
+        $cookie=cookie('jwt',$token,60*48);
 
         $response = [
             'user' => $user,
@@ -79,8 +80,14 @@ class AuthController extends Controller
 
     public function logout(){
         $cookie = Cookie::forget('jwt');
+        auth()->user()->tokens()->delete();
         return response([
             'message'=>'Success'
         ])->withCookie($cookie);
+    }
+
+    //get user
+    public function user(Request $request){
+        return $request->user();
     }
 }
