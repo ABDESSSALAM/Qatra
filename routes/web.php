@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+
+use App\Http\Controllers\DashboardController;
 
 
+//route to test queries
+Route::get('/test',[DashboardController::class,'test']);
 
-Route::get('/test',[HomeController::class,'getForUrgence']);
 Route::view('/{path?}', 'index')
      ->where('path', '.*')
      ->name('react');

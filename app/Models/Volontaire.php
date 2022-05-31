@@ -21,7 +21,7 @@ class Volontaire extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'IdVolontaire');
     }
@@ -33,7 +33,7 @@ class Volontaire extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function carnavals(): BelongsToMany
+    public function carnavals()
     {
         return $this->belongsToMany(Carnavale::class, 'carnaval_volontaires', 'IdVolontaire', 'IdCarnaval');
     }
@@ -44,7 +44,7 @@ class Volontaire extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-   public function urgences(): HasMany
+   public function urgences()
    {
        return $this->hasMany(Urgence::class, 'Volontaire');
    }

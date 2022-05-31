@@ -51,7 +51,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function association(): HasOne
+    public function association()
     {
         return $this->hasOne(Association::class, 'responsable');
     }
@@ -60,7 +60,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function volontaire(): HasOne
+    public function volontaire()
     {
         return $this->hasOne(Volontaire::class, 'IdVolontaire');
     }
@@ -70,7 +70,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function citoyen(): HasOne
+    public function citoyen()
     {
         return $this->hasOne(Citoyen::class, 'IdCitoyen');
     }

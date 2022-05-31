@@ -18,7 +18,7 @@ class Demande extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function citoyen(): BelongsTo
+    public function citoyen()
     {
         return $this->belongsTo(Citoyen::class, 'foreign_key', 'other_key');
     }
@@ -28,7 +28,7 @@ class Demande extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function urgence(): BelongsTo
+    public function urgence()
     {
         return $this->belongsTo(Urgene::class, 'IdUrg');
     }

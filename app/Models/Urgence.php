@@ -26,7 +26,7 @@ class Urgence extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function demande(): HasOne
+    public function demande()
     {
         return $this->hasOne(Demande::class, 'IdUrg', 'IdUrg');
     }
@@ -36,7 +36,7 @@ class Urgence extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function volontaire(): BelongsTo
+    public function volontaire()
     {
         return $this->belongsTo(Volontaire::class, 'Volontaire');
     }

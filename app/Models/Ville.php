@@ -21,7 +21,7 @@ class Ville extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Carnavales(): HasMany
+    public function Carnavales()
     {
         return $this->hasMany(Carnavale::class,'Ville');
     }

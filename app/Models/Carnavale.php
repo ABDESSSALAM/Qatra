@@ -24,7 +24,7 @@ class Carnavale extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function volontaires(): BelongsToMany
+    public function volontaires()
     {
         return $this->belongsToMany(Volontaire::class, 'carnaval_volontaires', 'IdCarnaval', 'IdVolontaire');
     }
