@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 
 
 
-Route::get('/test',[HomeController::class,'test']);
+Route::get('/test',[HomeController::class,'getForUrgence']);
 Route::view('/{path?}', 'index')
      ->where('path', '.*')
      ->name('react');
