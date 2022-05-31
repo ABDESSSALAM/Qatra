@@ -9,7 +9,7 @@ class Carnavale extends Model
 {
     use HasFactory;
     //serialisation
-
+    protected $fillable=['dateDebut','dateFin','lat','lang','Association','Ville'];
     //relations
 
     public function ville(){

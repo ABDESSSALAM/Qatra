@@ -11,6 +11,8 @@ class Association extends Model
 
     //serialisation
 
+    protected $fillable=['responsable','dateCreation','Ville'];
+
     //relations
 
     public function ville(){

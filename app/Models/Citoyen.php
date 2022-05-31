@@ -9,6 +9,10 @@ class Citoyen extends Model
 {
     use HasFactory;
     
+    //serialization
+    protected $fillable=['CIN'];
+
+    //relations
     public function demandes(){
         $this->hasMany(Demande::class,'IdCitoyen');
     }

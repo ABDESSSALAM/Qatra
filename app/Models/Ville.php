@@ -10,7 +10,7 @@ class Ville extends Model
     use HasFactory;
 
     //serialization here
-
+    protected $fillable=['nomVille'];
 
     //relations
     public function Associations(){

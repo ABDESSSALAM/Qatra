@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Demande extends Model
 {
     use HasFactory;
+    //serialzation
 
+    protected $fillable=['SanguinP','Hospitale','IdCitoyen','IdUrg'];
+
+    // relations
     /**
      * Get the Citoyen that owns the Demande
      *
