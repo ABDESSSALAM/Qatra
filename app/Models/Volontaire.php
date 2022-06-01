@@ -9,7 +9,7 @@ class Volontaire extends Model
 {
     use HasFactory;
     //serialisation
-    protected $fillable=['CIN','SanguinV','Ville'];
+    protected $fillable=['IdVolontaire','CIN','SanguinV','Ville'];
     //relations
 
     public function ville(){

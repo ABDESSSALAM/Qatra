@@ -10,7 +10,7 @@ class Citoyen extends Model
     use HasFactory;
     
     //serialization
-    protected $fillable=['CIN'];
+    protected $fillable=['CIN','Ville'];
 
     //relations
     public function demandes(){

@@ -11,7 +11,7 @@ class Association extends Model
 
     //serialisation
 
-    protected $fillable=['responsable','dateCreation','Ville'];
+    protected $fillable=['responsable','dateCreation','Ville','etat','nomAssoc'];
 
     //relations
 

@@ -9,7 +9,7 @@ class Urgence extends Model
 {
     use HasFactory;
     //serialisation
-    protected $fillable=['Association','Ville','Volontaire'];
+    protected $fillable=['Association','Ville','Volontaire','SanguinP'];
     //relations
 
     public function ville(){

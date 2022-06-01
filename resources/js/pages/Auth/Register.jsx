@@ -23,7 +23,7 @@ export const UserInfoContext=createContext({
 export const VolontaireContext=createContext({
   Volontaire:{
     CIN:'',
-    Ville:'',
+    ville:'',
     SangV:'',
   },
   setVolontaireInfo:()=>{}
@@ -32,9 +32,9 @@ export const VolontaireContext=createContext({
 export const DemandeContext=createContext({
   Demande:{
     CIN:'',
-    Ville:'',
-    Hospitale:'',
-    SangP:'',
+    ville:'',
+    hospitale:'',
+    sangP:'',
   },
   setDemandeInfo:()=>{}
 })
@@ -42,7 +42,7 @@ export const DemandeContext=createContext({
 export const AssociationContext=createContext({
   Association:{
     NomAssoc:'',
-    Ville:'',
+    ville:'',
     DateCreation:'',
   },
   setAssociationInfo:()=>{}
