@@ -22,6 +22,18 @@ use App\Http\Controllers\DashboardController;
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
+
+Route::prefix('carnavale')->group(function(){
+    Route::get('/all',[HomeController::class,'getCarnavales']);
+    Route::get('/ville/{id}',[HomeController::class,'getVilleCarnavales']);
+    Route::get('/{id}',[HomeController::class,'getnbrCarnavales']);
+});
+Route::prefix('urgences')->group(function(){
+    Route::get('/all',[HomeController::class,'getUrgences']);
+    Route::get('/{nbr}',[HomeController::class,'getNbrUrgence']);
+    
+});
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
     Route::post('/logout',[AuthController::class,'logout']);

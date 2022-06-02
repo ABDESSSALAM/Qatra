@@ -83,7 +83,7 @@ function UserInfo() {
         
 
       }
-      console.log(UserInfo)
+      
     }
 
     const inputStyle=" rounded-md px-3 text-xl outline-none py-1";

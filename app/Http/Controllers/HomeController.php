@@ -41,9 +41,7 @@ class HomeController extends Controller
         // return response()->json($carnavals);
         $carnavals = DB::table('carnavales')
         ->orderBy('dateDebut','DESC')
-        ->take(3)
         ->get();
-        
         return response()->json($carnavals);
         // $carnavals=Carnavale::orderBy('dateDebut','DESC')->get();
         // return response()->json($carnavals);
@@ -52,10 +50,10 @@ class HomeController extends Controller
 
     //get last For carnavales for home page
 
-    public function getForCarnavales(){
+    public function getnbrCarnavales($nbr){
         $carnavals = DB::table('carnavales')
         ->orderBy('dateDebut','DESC')
-        ->take(4)
+        ->take($nbr)
         ->get();
         return response()->json($carnavals);
     }
@@ -69,22 +67,22 @@ class HomeController extends Controller
     }
     
     //get for city carnavales
-    public function getVilleCarnavales(){
+    public function getVilleCarnavales($id){
         //id ville from response
-        $ville=1;
+        
         $carnavals = DB::table('carnavales')
-        ->where('ville', $ville)
+        ->where('ville', $id)
         ->orderBy('dateDebut','DESC')
         ->get();
         return response()->json($carnavals);
     }
 
     //get last 4 urgences
-    public function getForUrgence(){
+    public function getNbrUrgence($nbr){
         
         $urgences=DB::table('urgences')
         ->OrderBy('created_at')
-        ->take(4)
+        ->take($nbr)
         ->get();
 
         return response()->json($urgences);

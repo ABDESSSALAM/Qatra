@@ -2638,6 +2638,7 @@ function Login() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ACTIONS": () => (/* binding */ ACTIONS),
 /* harmony export */   "AssociationContext": () => (/* binding */ AssociationContext),
 /* harmony export */   "DemandeContext": () => (/* binding */ DemandeContext),
 /* harmony export */   "RoleContext": () => (/* binding */ RoleContext),
@@ -2661,11 +2662,43 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
+
+
+var ACTIONS = {
+  ADD_USER_INFO: 'ADD_USER_INFO',
+  ADD_VOLONTAIRE_INFO: 'ADD_VOLONTAIRE_INFO',
+  ADD_ASSOCIATION_INFO: 'ADD_ASSOCIATION_INFO',
+  ADD_CITOYEN_INFO: 'ADD_CITOYEN_INFO'
+};
+
+function reducer(data, action) {
+  switch (action.type) {
+    case ACTIONS.ADD_USER_INFO:
+      return _objectSpread(_objectSpread({}, data), action.payload.user);
+
+    case ACTIONS.ADD_CITOYEN_INFO:
+      return _objectSpread(_objectSpread({}, data), action.payload.citoyen);
+
+    case ACTIONS.ADD_VOLONTAIRE_INFO:
+      return _objectSpread(_objectSpread({}, data), action.payload.volontaire);
+
+    case ACTIONS.ADD_ASSOCIATION_INFO:
+      return _objectSpread(_objectSpread({}, data), action.payload.association);
+
+    default:
+      console.log('err');
+  }
+}
 
 var RoleContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
   Role: 0,
@@ -2685,7 +2718,7 @@ var UserInfoContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createC
 var VolontaireContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
   Volontaire: {
     CIN: '',
-    Ville: '',
+    ville: '',
     SangV: ''
   },
   setVolontaireInfo: function setVolontaireInfo() {}
@@ -2693,34 +2726,45 @@ var VolontaireContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.creat
 var DemandeContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
   Demande: {
     CIN: '',
-    Ville: '',
-    Hospitale: '',
-    SangP: ''
+    ville: '',
+    hospitale: '',
+    sangP: ''
   },
   setDemandeInfo: function setDemandeInfo() {}
 });
 var AssociationContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
   Association: {
     NomAssoc: '',
-    Ville: '',
+    ville: '',
     DateCreation: ''
   },
   setAssociationInfo: function setAssociationInfo() {}
 });
 
 function Register() {
-  var buttonsStyle = "text-white w-1/2 py-1 font-medium text-xl shadow-lg"; //step
+  var buttonsStyle = "text-white w-1/2 py-1 font-medium text-xl shadow-lg";
+
+  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(reducer, {}),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      data = _useReducer2[0],
+      dispatch = _useReducer2[1]; //step
+
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       step = _useState2[0],
-      setStep = _useState2[1]; //role
+      setStep = _useState2[1];
 
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('suivant'),
       _useState4 = _slicedToArray(_useState3, 2),
-      Role = _useState4[0],
-      setRole = _useState4[1];
+      txtNext = _useState4[0],
+      setTxtNext = _useState4[1]; //role
+
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      Role = _useState6[0],
+      setRole = _useState6[1];
 
   var RoleValue = {
     Role: Role,
@@ -2733,20 +2777,84 @@ function Register() {
     if (step > 0) {
       setStep(step - 1);
     }
+
+    if (step != 1) {
+      setTxtNext('next');
+    }
   };
 
   var next = function next(e) {
     e.preventDefault();
 
-    if (step < 2) {
-      setStep(step + 1);
+    if (Role == 0) {
+      alert('who are you??');
+      return;
+    }
+
+    if (step <= 2) {
+      if (step == 1) {
+        console.log('step 1');
+        console.log(UserInfo);
+        dispatch({
+          type: ACTIONS.ADD_USER_INFO,
+          payload: {
+            user: UserInfo
+          }
+        });
+      }
+
+      if (step == 2) {
+        console.log('step est 2');
+
+        switch (Role) {
+          case 1:
+            dispatch({
+              type: ACTIONS.ADD_CITOYEN_INFO,
+              payload: {
+                citoyen: DemandeInfo
+              }
+            });
+            break;
+
+          case 2:
+            dispatch({
+              type: ACTIONS.ADD_VOLONTAIRE_INFO,
+              payload: {
+                volontaire: VolontaireInfo
+              }
+            });
+            break;
+
+          case 3:
+            dispatch({
+              type: ACTIONS.ADD_ASSOCIATION_INFO,
+              payload: {
+                association: AssociationInfo
+              }
+            });
+            break;
+        } //sent request to server
+
+
+        console.log(data);
+      }
+
+      if (step < 2) {
+        setStep(step + 1);
+      }
+
+      console.log(step);
+    }
+
+    if (step == 1) {
+      setTxtNext('submit');
     }
   }; //changing last step depends on role
   //to insert data to db
   //user 
 
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     Fname: '',
     Lname: '',
     Email: '',
@@ -2754,63 +2862,63 @@ function Register() {
     Pass_Conf: '',
     Telephone: ''
   }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      UserInfo = _useState6[0],
-      setUserInfo = _useState6[1];
+      _useState8 = _slicedToArray(_useState7, 2),
+      UserInfo = _useState8[0],
+      setUserInfo = _useState8[1];
 
   var UserInfoValue = {
     UserInfo: UserInfo,
     setUserInfo: setUserInfo
   }; //volontaire
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     CIN: '',
     Ville: '',
     SangV: ''
   }),
-      _useState8 = _slicedToArray(_useState7, 2),
-      VolontaireInfo = _useState8[0],
-      setVolontaireInfo = _useState8[1];
+      _useState10 = _slicedToArray(_useState9, 2),
+      VolontaireInfo = _useState10[0],
+      setVolontaireInfo = _useState10[1];
 
   var VolontaireInfoValues = {
     VolontaireInfo: VolontaireInfo,
     setVolontaireInfo: setVolontaireInfo
   }; //Demande
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     CIN: '',
     Ville: '',
     Hospitale: '',
     SangP: ''
   }),
-      _useState10 = _slicedToArray(_useState9, 2),
-      DemandeInfo = _useState10[0],
-      setDemandeInfo = _useState10[1];
+      _useState12 = _slicedToArray(_useState11, 2),
+      DemandeInfo = _useState12[0],
+      setDemandeInfo = _useState12[1];
 
   var DemandeInfoValue = {
     DemandeInfo: DemandeInfo,
     setDemandeInfo: setDemandeInfo
   }; //Association
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     NomAssoc: '',
     Ville: '',
     DateCreation: ''
   }),
-      _useState12 = _slicedToArray(_useState11, 2),
-      AssociationInfo = _useState12[0],
-      setAssociationInfo = _useState12[1];
+      _useState14 = _slicedToArray(_useState13, 2),
+      AssociationInfo = _useState14[0],
+      setAssociationInfo = _useState14[1];
 
   var AssociationInfoValue = {
     AssociationInfo: AssociationInfo,
     setAssociationInfo: setAssociationInfo
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Progress__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: step
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("form", {
-      className: "flex flex-col w-full  ",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(RoleContext.Provider, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      className: "flex flex-col w-full ",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Progress__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        step: step
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(RoleContext.Provider, {
         value: RoleValue,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(UserInfoContext.Provider, {
           value: UserInfoValue,
@@ -2835,11 +2943,11 @@ function Register() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             onClick: next,
             className: "".concat(buttonsStyle, "  bg-green-500 rounded-br-mg w-1/2"),
-            children: "next"
+            children: txtNext
           })]
         })]
-      })
-    })]
+      })]
+    })
   });
 }
 
@@ -3252,13 +3360,13 @@ __webpack_require__.r(__webpack_exports__);
 function Progress(props) {
   var step = props.step;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "w-full cursor-pointer bg-slate-300 h-sq20 flex rounded-t-lg shadow-lg",
+    className: "w-full cursor-pointer bg-slate-300 h-sq20 flex",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "w-1/3 bg-green-600 shadow-lg  rounded-tl-lg  h-full"
+      className: "w-1/3 bg-green-600   h-full"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "".concat(step >= 1 ? 'bg-green-600' : 'bg-white', " w-1/3  shadow-lg border-x-2 border-gray-600   h-full")
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "".concat(step == 2 ? 'bg-green-600' : 'bg-white', " w-1/3  h-full shadow-lg rounded-tr-lg")
+      className: "".concat(step == 2 ? 'bg-green-600' : 'bg-white', " w-1/3  h-full shadow-lg ")
     })]
   });
 }
@@ -3424,8 +3532,6 @@ function UserInfo() {
         });
         break;
     }
-
-    console.log(UserInfo);
   };
 
   var inputStyle = " rounded-md px-3 text-xl outline-none py-1";
