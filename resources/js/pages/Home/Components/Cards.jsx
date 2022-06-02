@@ -1,11 +1,27 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Card from './Card'
+import axios_api from '../../../CONF_AXIOS';
+
 function Cards() {
+  const [carnavale,setCarnavale]=useState([]);
+  useEffect( ()=>{
+    axios_api.get('/carnavale/all').then(res=>{
+   // setCarnavale(res.data);
+    console.log(res.data) 
+    setCarnavale(res.data)
+    });
+    
+  },[])
+
+  const displayCarnavales=carnavale.map((item,idx)=>{
+    return <Card key={idx} localisation={item.location} debut={item.dateDebut} fin={item.dateFin} />
+  }
+     )
   return (
     <div className='flex justify-center container w-11/12  my-2 cursor-pointer'>
-        <Card   localisation="Lahdim - Meknes" debut="01-02-2022" fin="04-05-2022" />
-        <Card   localisation="Lahdim - Meknes" debut="01-02-2022" fin="04-05-2022" />
-        <Card   localisation="Lahdim - Meknes" debut="01-02-2022" fin="04-05-2022" />
+      {carnavale.length==0 && <h3>no data to display</h3>}
+      {carnavale.length>0 && displayCarnavales }
+        
     </div>
   )
 }

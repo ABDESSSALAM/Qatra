@@ -2123,6 +2123,28 @@ var UserProvider = function UserProvider(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/CONF_AXIOS.js":
+/*!************************************!*\
+  !*** ./resources/js/CONF_AXIOS.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var axios_api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: 'http://127.0.0.1:8000/api',
+  withCredentials: true
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios_api);
+
+/***/ }),
+
 /***/ "./resources/js/ProtectedRoutes/Level2.jsx":
 /*!*************************************************!*\
   !*** ./resources/js/ProtectedRoutes/Level2.jsx ***!
@@ -2363,26 +2385,6 @@ if (document.getElementById('app')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/API/MY_AXIOS.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/API/MY_AXIOS.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: 'http://127.0.0.1:8000/api'
-}));
-
-/***/ }),
-
 /***/ "./resources/js/pages/Auth/AuthWrapper.jsx":
 /*!*************************************************!*\
   !*** ./resources/js/pages/Auth/AuthWrapper.jsx ***!
@@ -2468,10 +2470,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _Context_UserContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Context/UserContext */ "./resources/Context/UserContext.js");
-/* harmony import */ var _components_API_MY_AXIOS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/API/MY_AXIOS */ "./resources/js/components/API/MY_AXIOS.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2495,8 +2496,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-var LOGIN_URL = '/login';
 
 function Login() {
   var inputStyle = 'text-lg outline-none rounded-md px-2 py-1';
@@ -2529,59 +2528,50 @@ function Login() {
 
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              e.preventDefault();
-              _context.prev = 1;
-              _context.next = 4;
-              return _components_API_MY_AXIOS__WEBPACK_IMPORTED_MODULE_3__["default"].post(LOGIN_URL, JSON.stringify({
-                email: email,
-                password: pass
-              }), {
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              });
+              e.preventDefault(); // try{
+              //   const response= await MY_AXIOS.post(
+              //     LOGIN_URL,
+              //     JSON.stringify(
+              //       {
+              //        email:email,
+              //       password:pass}
+              //       ),
+              //     {
+              //       headers:{'Content-Type':'application/json'},
+              //     });
+              //     console.log(response.data.user)
+              //     console.log(response.data.token)
+              //     setUser({
+              //       nom:response.data.user.nom,
+              //       prenom:response.data.user.prenom,
+              //       email:response.data.user.email,
+              //       role:response.data.user.role,
+              //       token:response.data.token,
+              //       id:response.data.user.id,
+              //       isAuth:true
+              //     })
+              //     setLogged(true);
+              // }catch(err){
+              //   setErr(err)
+              //   if(err.response){
+              //     console.log(error.response)
+              //   }else if(err.request){
+              //     console.log('request')
+              //   }else if(err.message){
+              //     console.log('message')
+              //   }
+              // }  
 
-            case 4:
-              response = _context.sent;
-              console.log(response.data.user);
-              console.log(response.data.token);
-              setUser({
-                nom: response.data.user.nom,
-                prenom: response.data.user.prenom,
-                email: response.data.user.email,
-                role: response.data.user.role,
-                token: response.data.token,
-                id: response.data.user.id,
-                isAuth: true
-              });
-              setLogged(true);
-              _context.next = 15;
-              break;
-
-            case 11:
-              _context.prev = 11;
-              _context.t0 = _context["catch"](1);
-              setErr(_context.t0);
-
-              if (_context.t0.response) {
-                console.log(error.response);
-              } else if (_context.t0.request) {
-                console.log('request');
-              } else if (_context.t0.message) {
-                console.log('message');
-              }
-
-            case 15:
+            case 1:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 11]]);
+      }, _callee);
     }));
 
     return function handleSubmit(_x) {
@@ -2591,15 +2581,15 @@ function Login() {
 
 
   if (logged) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Navigate, {
       to: "/"
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
     onSubmit: handleSubmit,
     className: "w-full h-full flex flex-col items-stretch justify-around px-4 bg-primary",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       className: inputStyle,
       type: "text",
       name: "email",
@@ -2608,7 +2598,7 @@ function Login() {
       onChange: function onChange(e) {
         setEmail(e.target.value);
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       className: inputStyle,
       type: "password",
       name: "password",
@@ -2617,7 +2607,7 @@ function Login() {
       onChange: function onChange(e) {
         setPass(e.target.value);
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       className: "bg-green-600 text-white font-semibold text-2xl rounded-3xl cursor-pointer py-1",
       type: "submit",
       value: "connecter"
@@ -4798,28 +4788,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Card */ "./resources/js/pages/Home/Components/Card.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 
 
 function Cards() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      carnavale = _useState2[0],
+      setCarnavale = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get('/carnavale/all').then(function (res) {
+      // setCarnavale(res.data);
+      console.log(res.data);
+      setCarnavale(res.data);
+    });
+  }, []);
+  var displayCarnavales = carnavale.map(function (item, idx) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      localisation: item.location,
+      debut: item.dateDebut,
+      fin: item.dateFin
+    }, idx);
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "flex justify-center container w-11/12  my-2 cursor-pointer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      localisation: "Lahdim - Meknes",
-      debut: "01-02-2022",
-      fin: "04-05-2022"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      localisation: "Lahdim - Meknes",
-      debut: "01-02-2022",
-      fin: "04-05-2022"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      localisation: "Lahdim - Meknes",
-      debut: "01-02-2022",
-      fin: "04-05-2022"
-    })]
+    children: [carnavale.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+      children: "no data to display"
+    }), carnavale.length > 0 && displayCarnavales]
   });
 }
 
@@ -5295,7 +5308,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Components/Search */ "./resources/js/pages/Home/Components/Search.jsx");
 /* harmony import */ var _Components_Cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Cards */ "./resources/js/pages/Home/Components/Cards.jsx");
 /* harmony import */ var _Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/HomeLayout */ "./resources/js/pages/Home/Components/HomeLayout.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -5304,8 +5319,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function HomeCarnaval() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Search__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Cards__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Search__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Cards__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
   });
 }
 

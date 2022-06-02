@@ -6,8 +6,11 @@ import Information from './Components/Information'
 import Footer from './Components/Footer'
 
 
+
+
 function Home() {
   
+
   return (
     <div className='w-full h-full '>
       <Header />

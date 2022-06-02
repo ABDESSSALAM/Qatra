@@ -1,9 +1,6 @@
 import React,{useContext,useState,useEffect} from 'react'
 import { Navigate, } from 'react-router-dom';
 import { UserContext } from '../../../Context/UserContext';
-import MY_AXIOS from '../../components/API/MY_AXIOS';
-
-const LOGIN_URL='/login';
 
 
 function Login() {
@@ -22,40 +19,40 @@ function Login() {
  const  handleSubmit= async (e)=>{
     e.preventDefault();
     
-    try{
-      const response= await MY_AXIOS.post(
-        LOGIN_URL,
-        JSON.stringify(
-          {
-           email:email,
-          password:pass}
-          ),
-        {
-          headers:{'Content-Type':'application/json'},
-        });
-        console.log(response.data.user)
-        console.log(response.data.token)
-        setUser({
-          nom:response.data.user.nom,
-          prenom:response.data.user.prenom,
-          email:response.data.user.email,
-          role:response.data.user.role,
-          token:response.data.token,
-          id:response.data.user.id,
-          isAuth:true
-        })
+    // try{
+    //   const response= await MY_AXIOS.post(
+    //     LOGIN_URL,
+    //     JSON.stringify(
+    //       {
+    //        email:email,
+    //       password:pass}
+    //       ),
+    //     {
+    //       headers:{'Content-Type':'application/json'},
+    //     });
+    //     console.log(response.data.user)
+    //     console.log(response.data.token)
+    //     setUser({
+    //       nom:response.data.user.nom,
+    //       prenom:response.data.user.prenom,
+    //       email:response.data.user.email,
+    //       role:response.data.user.role,
+    //       token:response.data.token,
+    //       id:response.data.user.id,
+    //       isAuth:true
+    //     })
         
-        setLogged(true);
-    }catch(err){
-      setErr(err)
-      if(err.response){
-        console.log(error.response)
-      }else if(err.request){
-        console.log('request')
-      }else if(err.message){
-        console.log('message')
-      }
-    }  
+    //     setLogged(true);
+    // }catch(err){
+    //   setErr(err)
+    //   if(err.response){
+    //     console.log(error.response)
+    //   }else if(err.request){
+    //     console.log('request')
+    //   }else if(err.message){
+    //     console.log('message')
+    //   }
+    // }  
     
     
   }
