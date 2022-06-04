@@ -109,12 +109,12 @@ class AuthController extends Controller
 
     //logging
     public function login(Request $request) {
-        $data = $this::_validate($request, [
+
+        $data=$request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        if ($data instanceof Response) return $data;
+        
 
         $email = $data['email'];
         $password = $data['password'];
@@ -126,7 +126,7 @@ class AuthController extends Controller
            //401 HTTP UNAUTHORIZED
        }
 
-       $user = $this::_user();
+       $user = Auth::user();
        $token= $user->createToken('token')->plainTextToken;
        $cookie=cookie('jwt',$token,60*48);
 
@@ -139,9 +139,14 @@ class AuthController extends Controller
 
     //log out
 
-    public function logout(){
+    public function logout(Request $request){
+       
+        
+        Auth::user()->tokens()->delete();
         $cookie = Cookie::forget('jwt');
-        auth()->user()->tokens()->delete();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
         return response([
             'message'=>'Success'
         ])->withCookie($cookie);
@@ -149,7 +154,6 @@ class AuthController extends Controller
 
     //get user
     public function user(){
-        $user=Auth::user();
-        return response()->json($user);
+        return Auth::user();
     }
 }
