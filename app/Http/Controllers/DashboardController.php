@@ -18,22 +18,49 @@ class DashboardController extends Controller
     //get all volontaire
     public function getVolontaires(){
         //aviable only for verfied association and admin
-        $role =Auth::user()->role;
+
+        //origin traitement
+        $volontaire=DB::table('users')
+        ->join('volontaires','users.id','=','volontaires.IdVolontaire')
+        ->join('villes','volontaires.Ville','=','villes.id')
+        ->select(
+            'users.nom',
+            'users.prenom',
+            'users.telephone',
+            'villes.nomVille',
+            'volontaires.SanguinV')->get();
+        return response()->json($volontaire);
+        /*$role =Auth::user()->role;
         if($role>3){
             $volontaire=Volontaire::with('user')->get();
             return response($volontaire);
         }
+        */
     }
 
     //get all association
 
     public function getAssociation(){
+        
+        
+        $associations = DB::table('associations')
+        ->join('users','associations.responsable','=','users.id')
+        ->join('villes','associations.Ville','=','villes.id')
+        ->select(
+            'associations.IdAssoc',
+            'associations.nomAssoc',
+            'associations.etat',
+            'users.telephone',
+            'villes.nomVille'
+        )->get();
+        return response()->json($associations);
+
 
         //only for admin role==5
         $role =Auth::user()->role;
         if($role==5){
-         $associations=Association::all();
-        return response($associations);   
+        
+            //get associations
         }
     }
 

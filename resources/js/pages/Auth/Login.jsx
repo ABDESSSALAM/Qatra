@@ -1,7 +1,7 @@
 import React,{useContext,useState,useEffect} from 'react'
 import { Navigate, } from 'react-router-dom';
 import { UserContext } from '../../../Context/UserContext';
-
+import axios_api from '../../CONF_AXIOS';
 
 function Login() {
   const inputStyle='text-lg outline-none rounded-md px-2 py-1';
@@ -11,14 +11,24 @@ function Login() {
   const [pass,setPass]=useState('');
   const [err,setErr]=useState('');
   const [logged,setLogged]=useState(false);
-  useEffect(()=>{
-      
-    })
+  
 
    
  const  handleSubmit= async (e)=>{
     e.preventDefault();
+    const data={
+      'email':email,
+      'password':pass
+    }
+    axios_api.post('login',data).then(res=>{
+      if(res.data.message=='Success'){
+        setUser(res.data.user);
+        setLogged(true)
+      }
+    })
     
+
+
     // try{
     //   const response= await MY_AXIOS.post(
     //     LOGIN_URL,

@@ -1,16 +1,25 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import CarnavalTable from './Compenent/CarnavalTable';
-
+import axios_api from '../../CONF_AXIOS';
 
 function Carnaval() {
   const [open,setopen]=useState(false);
   const toggleOpen=()=>{
     setopen(!open)}
 
+    //fetch ville
   const Villes=['Meknes','Fes','Rabat'];
   const ListVilles=Villes.map((ville,idx)=><option key={idx} value={idx}>{ville}</option>)
   
-  //for data table
+  //featch data
+  const[data,setData]=useState([]);
+
+  useEffect(()=>{
+    axios_api.get('carnavale/all')
+    .then(res=>setData(res.data))
+    .catch(err=>console.log(err));
+
+  },[])
   
   
 
@@ -45,7 +54,7 @@ function Carnaval() {
       <button className='self-end bg-green-600 text-white font-medium px-2 py-1 rounded-lg shadow-md mt-2 ml-3'>Ajouter</button>
      </form>
      {/* display data */}
-      <CarnavalTable />
+      <CarnavalTable data={data} />
 {/* end display data */}
     </div>
   )

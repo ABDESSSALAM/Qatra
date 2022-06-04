@@ -1,11 +1,17 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { DataCarnavals } from '../FakeData/DataCarnavals';
-function CarnavalTable() {
-    const DATA_HEADER=['localisation','Date Debut','Date Fin','Ville'];
-  const [data,setData]=useState([DataCarnavals]);
+import axios_api from '../../../CONF_AXIOS';
 
+
+function CarnavalTable(props) {
+    const DATA_HEADER=['localisation','Date Debut','Date Fin','Ville'];
+     const data=props.data;
+        
     //header
     const STYLE_THEAD="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400";
+    
+    
+    
     const DateHeader=DATA_HEADER.map((head,idx)=>{
         return( 
             
@@ -15,14 +21,15 @@ function CarnavalTable() {
             
             )
     })
-    console.log(data)
+    
+  
     const ROW_TR_STYLE="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700";
     const ROW_TH_STYLE="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap";
-    const dataRow=data[0].map((row,idx)=>{
+    const dataRow=data.map((row,idx)=>{
         return(
             <tr key={idx} className={ROW_TR_STYLE}>
                 <th scope='row' className={ROW_TH_STYLE}>
-                    {row.localisation}
+                    {row.location.toUpperCase()}
                 </th>
                 <td className="px-6 py-4">
                     {row.dateDebut}
@@ -31,7 +38,7 @@ function CarnavalTable() {
                     {row.dateFin}
                 </td>
                 <td className="px-6 py-4">
-                    {row.Ville}
+                    {row.nomVille}
                 </td>
                 <td className="px-6 py-4 text-right">
                     <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</button>
@@ -41,11 +48,12 @@ function CarnavalTable() {
     })
 
     
+    
 
     
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-
+        {dataRow.length>0 &&
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className={STYLE_THEAD}>
             <tr>
@@ -54,10 +62,17 @@ function CarnavalTable() {
             
         </thead>
         <tbody>
+            
             {dataRow}
            
         </tbody>
     </table>
+    }
+    {dataRow.length==0 && <div className='bg-gray-200 w-11/12 text-center'>
+        <h2>no data to display...</h2>
+    </div>}
+    
+
     </div>
   )
 }

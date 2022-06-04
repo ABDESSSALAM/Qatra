@@ -33,6 +33,8 @@ Route::prefix('urgences')->group(function(){
     Route::get('/{nbr}',[HomeController::class,'getNbrUrgence']);
     
 });
+Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
+Route::get('/associations',[DashboardController::class,'getAssociation']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
