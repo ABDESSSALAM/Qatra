@@ -2,6 +2,7 @@ import React,{useContext} from 'react'
 import { RoleContext } from '../Register';
 function Card(props) {
   const {Role,setRole}=useContext(RoleContext);
+  
   const handleClick = ()=>{
     setRole(props.idx);
   }

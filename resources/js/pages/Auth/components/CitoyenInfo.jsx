@@ -1,10 +1,11 @@
-import React,{useContext} from 'react'
-import { DemandeContext } from '../Register';
+import React,{ useState} from 'react'
 
-function CitoyenInfo() {
+function CitoyenInfo(props) {
+    //styling
+    const buttonsStyle="text-white w-1/2 py-1 font-medium text-xl shadow-lg";
     //data
-    const Villes=['Meknes','Fes','Rabat'];
-    const ListVilles=Villes.map((ville,idx)=><option key={idx} value={idx} >{ville}</option>)
+    const Villes=props.villes;
+    const ListVilles=Villes.map((ville)=><option key={ville.id} value={ville.id} >{ville.nomVille}</option>)
     const groupSang=['A+','A-','B+','B-','AB+','AB-','O+','O-'];
     const ListGroupSang=groupSang.map((sg,idx)=><option key={idx} value={sg}>{sg}</option>)
     //style
@@ -12,50 +13,35 @@ function CitoyenInfo() {
     const inputStyle="w-8/12 outline-none rounded-md px-2 text-lg";
     const spanStyle="w-4/12 text-white text-xl";
 
-    //handle Form
-    const {Demande,SetDemande}=useContext(DemandeContext);
+    const [CIN,setCIN]=useState('')
+    const [ville,setville]=useState('')
+    const [hospitale,sethospitale]=useState('')
+    const [sangP,setsangP]=useState('')
+       
 
-   const handleInput=(e)=>{
-      const name=e.target.name;
-      const value=e.target.value;
-      switch(name){
-        case "CIN":
-          SetDemande({
-            CIN:value,
-            Ville:Demande.Ville,
-            Hospitale:Demande.Hospitale,
-            SangP:Demande.SangP,
-          })
-          break
-        
-        case "Hospitale":
-          SetDemande({
-            CIN:Demande.CIN,
-            Ville:Demande.Ville,
-            Hospitale:value,
-            SangP:Demande.SangP,
-          })
-          break
-        case "Ville":
-          SetDemande({
-            CIN:Demande.CIN,
-            Ville:value,
-            Hospitale:Demande.Hospitale,
-            SangP:Demande.SangP,
-          })
-          break
-        case "SangP":
-          SetDemande({
-            CIN:Demande.CIN,
-            Ville:Demande.Ville,
-            Hospitale:Demande.Hospitale,
-            SangP:value,
-          })
-          break
-      }
+
+    //handle clicks
+    let step=props.step;
+    const prev=(e)=>{
+      e.preventDefault();
+      props.setStep(step-1);
     }
-    //end handle Input
-    
+    const register =(e)=>{
+      e.preventDefault();
+
+      //validation
+      let data=props.data;
+      const newData={
+        CIN:CIN,
+        sangP:sangP,
+        hospitale:hospitale,
+        ville:ville
+      }
+      data={...data,...newData};
+      props.setDataUser(data)
+      //send data to server
+
+    }
 
 
  return (
@@ -67,25 +53,29 @@ function CitoyenInfo() {
        <div  className='w-10/12 h-2/3 py-2  flex flex-col items-stretch'>
          <div className={`${inputWrapper} `}>
            <span className={`${spanStyle}`}>CIN :</span>
-           <input onChange={handleInput}  type="text" name="CIN" className={`${inputStyle}`} />
+           <input onChange={(e)=>setCIN(e.target.value)}  type="text" name="CIN" className={`${inputStyle}`} />
          </div>
          <div className={`${inputWrapper} `}>
            <span className={`${spanStyle}`}>Hospitale :</span>
-           <input onChange={handleInput} type="text" name="Hospitale" className={`${inputStyle}`} />
+           <input onChange={(e)=>sethospitale(e.target.value)} type="text" name="Hospitale" className={`${inputStyle}`} />
          </div>
          <div  className={`${inputWrapper}`} >
            <span className={`${spanStyle}`}>Ville :</span>
-           <select className={`${inputStyle}`} name="Ville" onChange={handleInput} >
+           <select className={`${inputStyle}`} name="Ville" onChange={(e)=>setville(e.target.value)} >
              {ListVilles}
            </select>
          </div>
          <div className={`${inputWrapper}`} >
            <span className={`${spanStyle} text-lg`}>Sanguin group :</span>
-           <select className={`${inputStyle}`} name="SangP" onChange={handleInput} >
+           <select className={`${inputStyle}`} name="SangP" onChange={(e)=>setsangP(e.target.value)} >
              {ListGroupSang}
            </select>
          </div>
        </div>
+       <div className='flex justify-between w-full'>
+            
+            <button onClick={register}  className={`${buttonsStyle}  bg-green-500 rounded-br-mg w-1/2`}>register</button>
+        </div>
    </div>
  )
 }

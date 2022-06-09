@@ -2,7 +2,7 @@ import React,{useContext,useState,useEffect} from 'react'
 import { Navigate, } from 'react-router-dom';
 import { UserContext } from '../../../Context/UserContext';
 import axios_api from '../../CONF_AXIOS';
-
+import Cookies from 'universal-cookie';
 function Login() {
   const inputStyle='text-lg outline-none rounded-md px-2 py-1';
   const {user,setUser}=useContext(UserContext)
@@ -26,51 +26,19 @@ function Login() {
         setLogged(true)
       }
     })
-    
-
-
-    // try{
-    //   const response= await MY_AXIOS.post(
-    //     LOGIN_URL,
-    //     JSON.stringify(
-    //       {
-    //        email:email,
-    //       password:pass}
-    //       ),
-    //     {
-    //       headers:{'Content-Type':'application/json'},
-    //     });
-    //     console.log(response.data.user)
-    //     console.log(response.data.token)
-    //     setUser({
-    //       nom:response.data.user.nom,
-    //       prenom:response.data.user.prenom,
-    //       email:response.data.user.email,
-    //       role:response.data.user.role,
-    //       token:response.data.token,
-    //       id:response.data.user.id,
-    //       isAuth:true
-    //     })
-        
-    //     setLogged(true);
-    // }catch(err){
-    //   setErr(err)
-    //   if(err.response){
-    //     console.log(error.response)
-    //   }else if(err.request){
-    //     console.log('request')
-    //   }else if(err.message){
-    //     console.log('message')
-    //   }
-    // }  
-    
-    
   }
   
   //chek
   if(logged){
-    
-    return <Navigate to="/" />
+    switch(user.role){
+      case 3:
+        // let date=new Date();
+        // date.setTime(date.getTime()+(48*60*60*1000))
+        // Cookies.set('id',user.id,date)
+        return <Navigate to="/dashboard" />
+    }
+
+    return <Navigate to={`/profile/${user.id}`} />
   }
   return (
    

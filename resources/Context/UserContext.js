@@ -2,14 +2,7 @@ import { createContext,useState,useEffect } from "react";
 import axios_api from "../js/CONF_AXIOS";
 //export const UserContext=createContext(null)
 export const UserContext=createContext({
-  user:{
-    //   nom:'',
-    //   prenom:'',
-    //   email:'',
-    //   role:0,
-    //   token:'',
-    //   isAuth:false
-  },
+  user:{},
   setUser:()=>{}      
 })
 
@@ -26,7 +19,7 @@ export const UserProvider=({children})=>{
           }else if(res.status==401){
             setUser({})
           }
-        })
+        }).catch(err=>console.log(err))
     },[])
     const contexValue={
        user,setUser

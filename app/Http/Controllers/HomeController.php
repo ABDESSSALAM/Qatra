@@ -123,4 +123,11 @@ class HomeController extends Controller
 
         return response()->json($urgences);
     }
+
+    //get ville
+    public function getVilles(){
+        $villes=DB::table('villes')->select('id','nomVille')->get();
+        return response()->json($villes);
+
+    }
 }

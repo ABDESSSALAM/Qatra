@@ -21,7 +21,7 @@ use App\Http\Controllers\DashboardController;
 
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
-
+Route::get('/villes',[HomeController::class,'getVilles']);
 
 Route::prefix('carnavale')->group(function(){
     Route::get('/all',[HomeController::class,'getCarnavales']);
