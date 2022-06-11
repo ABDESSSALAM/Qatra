@@ -11,7 +11,7 @@ class Demande extends Model
     //serialzation
 
     protected $fillable=['SanguinP','Hospitale','IdCitoyen','IdUrg'];
-
+    public $timestamps = false;
     // relations
     /**
      * Get the Citoyen that owns the Demande

@@ -12,7 +12,7 @@ class Association extends Model
     //serialisation
 
     protected $fillable=['responsable','dateCreation','Ville','etat','nomAssoc'];
-
+    public $timestamps = false;
     //relations
 
     public function ville(){

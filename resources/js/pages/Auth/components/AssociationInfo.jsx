@@ -1,4 +1,6 @@
 import React,{ useState} from 'react'
+import axios_api from '../../../CONF_AXIOS';
+
 function AssociationInfo(props) {
   //styling
   const buttonsStyle="text-white w-1/2 py-1 font-medium text-xl shadow-lg";
@@ -16,7 +18,7 @@ function AssociationInfo(props) {
   const [dateCreation,setdateCreation]=useState('')
   const [ville,setville]=useState(0)
 
-  const register=(e)=>{
+  const register= async (e)=>{
     e.preventDefault();
     //validation
 
@@ -28,7 +30,9 @@ function AssociationInfo(props) {
     }
     data={...data,...newData};
     props.setDataUser(data)
-    console.log(data)
+    await axios_api.post('register',data)
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err))
   }
    return (
      <div className='w-full bg-primary px-4 py-2 flex md:flex-col items-center  shadow-lg cursor-pointer md:h-80'>

@@ -16,53 +16,37 @@ class AuthController extends Controller
 {
     //add new user
     public function register(Request $request ){
-        //step 1 : validation
-        //step 2 : role only 1 2 3 to regester new user
-        //step 3 : create user
-        //step 4-1 : role 1 => user + citoyen + demande
-        //step 4-2: role 2 => user + volontaire
-        //step 4-3 : role 3 => user + association
 
-
-        //step 1
-        $fields = $request->validate([
-            'nom'=>'required|max:25',
-            'prenom'=>'required|max:25',
-            'email'=>'required|email|unique:users,email',
-            'telephone'=>'required|between:10,13',
-            'password'=>'required|min:7',
-            'role'=>'required',
-            'CIN'=>'required|between:6,8',
-            'ville'=>'required',
-        ]);
 
         //step 2
-        $role=$fields['role'];
+        $role=$request->input('role');
         if($role != 1 && $role != 2 && $role != 3){
             return response([
+                "role"=>$role,
                 'message'=>'unable to create user with this role'
             ]);
         }
         //step 3
 
         $user = User::create([
-            'nom'=>$fields['nom'],
-            'prenom'=>$fields['prenom'],
-            'telephone'=>$fields['telephone'],
-            'email'=>$fields['email'],
-            'password'=>bcrypt($fields['password']),
-            'role'=>$fields['role']
+            'nom'=>$request->input('nom'),
+            'prenom'=>$request->input('prenom'),
+            'telephone'=>$request->input('telephone'),
+            'email'=>$request->input('email'),
+            'password'=>bcrypt($request->input('password')),
+            'role'=>$request->input('role')
         ]);
 
         $token = $user->createToken('token')->plainTextToken;
-        $idUser=$user->id();
+        $idUser=$user->id;
         //step 4 - 1
         switch($role){
             case 1:
                  //add citoyen
                 $citoyen=Citoyen::create([
                     'IdCitoyen'=>$idUser,
-                    'CIN'=>$feilds['CIN']
+                    'CIN'=>$request->input('CIN'),
+                    'Ville'=>$request->input('ville')
                 ]);
                 //add demande
                 $demande=Demande::create([
@@ -75,17 +59,17 @@ class AuthController extends Controller
             case 2:
                 $volonatire=Volontaire::create([
                     'IdVolontaire'=>$idUser,
-                    'CIN'=>$feilds['CIN'],
+                    'CIN'=>$request->input('CIN'),
                     'SanguinV'=>$request->input('SangV'),
-                    'Ville'=>$feilds['ville']
+                    'Ville'=>$request->input('ville')
                 ]);
                 break;
             case 3:
-                $dateCreation=date_create_from_format('Y-m-d',$request->input('DateCreation'));
+                
                 $association=Association::create([
                     'responsable'=>$idUser,
-                    'dateCreation'=>$dateCreation,
-                    'Ville'=>$feilds['ville'],
+                    'dateCreation'=>$request->input('dateCreation'),
+                    'Ville'=>$request->input('ville'),
                     'etat'=>0,
                     'nomAssoc'=>$request->input('NomAssoc')
                 ]);

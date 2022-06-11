@@ -1,5 +1,5 @@
 import React,{useContext, useState} from 'react'
-import { VolontaireContext } from '../Register';
+import axios_api from '../../../CONF_AXIOS';
 
 
 function VolontaireInfo(props) {
@@ -20,7 +20,7 @@ function VolontaireInfo(props) {
   const [CIN,setCIN]=useState('')
   const [ville,setville]=useState('')
   const [sangV,setsangV]=useState('')
-  const register=(e)=>{
+  const register= async (e)=>{
     e.preventDefault();
     //validation
 
@@ -34,6 +34,9 @@ function VolontaireInfo(props) {
     props.setDataUser(data)
     console.log(data)
       //send data to server
+      await axios_api.post('register',data)
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err))
   }
   return (
     <div className='w-full bg-primary px-4 py-2 flex flex-col items-center  shadow-lg cursor-pointer h-72'>

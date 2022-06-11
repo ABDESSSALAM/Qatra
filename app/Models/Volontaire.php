@@ -10,6 +10,7 @@ class Volontaire extends Model
     use HasFactory;
     //serialisation
     protected $fillable=['IdVolontaire','CIN','SanguinV','Ville'];
+    public $timestamps = false;
     //relations
 
     public function ville(){

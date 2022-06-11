@@ -10,7 +10,8 @@ class Citoyen extends Model
     use HasFactory;
     
     //serialization
-    protected $fillable=['CIN','Ville'];
+    protected $fillable=['IdCitoyen','CIN','Ville'];
+    public $timestamps = false;
 
     //relations
     public function demandes(){

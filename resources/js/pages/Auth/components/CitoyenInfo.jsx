@@ -1,5 +1,5 @@
 import React,{ useState} from 'react'
-
+import axios_api from '../../../CONF_AXIOS';
 function CitoyenInfo(props) {
     //styling
     const buttonsStyle="text-white w-1/2 py-1 font-medium text-xl shadow-lg";
@@ -26,7 +26,7 @@ function CitoyenInfo(props) {
       e.preventDefault();
       props.setStep(step-1);
     }
-    const register =(e)=>{
+    const register = async (e)=>{
       e.preventDefault();
 
       //validation
@@ -40,7 +40,9 @@ function CitoyenInfo(props) {
       data={...data,...newData};
       props.setDataUser(data)
       //send data to server
-
+      await await axios_api.post('register',data)
+      .then(res=>console.log(res.data))
+      .catch(err=>console.log(err))
     }
 
 
