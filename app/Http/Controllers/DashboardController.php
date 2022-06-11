@@ -113,8 +113,13 @@ class DashboardController extends Controller
         }
     }
 
-    //to test routes
-    public function test(){
-        
+    public function getDemandes(){
+        $urgence=DB::table('demandes')
+        ->join('citoyens','demandes.IdCitoyen','=','citoyens.IdCitoyen')
+        ->join('users','citoyens.IdCitoyen','=','users.id')
+        ->select('demandes.*','users.telephone')
+        ->where('IdUrg',null)
+        ->get();
+        return response()->json($urgence);
     }
 }

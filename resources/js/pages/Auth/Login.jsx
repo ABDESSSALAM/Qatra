@@ -35,6 +35,17 @@ function Login() {
         // let date=new Date();
         // date.setTime(date.getTime()+(48*60*60*1000))
         // Cookies.set('id',user.id,date)
+
+
+        //get association info
+
+        //set cookies
+        const d = new Date();
+        d.setTime(d.getTime() + (4*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = 'idUser' + "=" + user.id + ";" + expires + ";path=/";
+        
+        
         return <Navigate to="/dashboard" />
     }
 

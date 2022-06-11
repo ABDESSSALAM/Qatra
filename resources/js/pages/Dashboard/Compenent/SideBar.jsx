@@ -37,7 +37,8 @@ function SideBar(props) {
         text:'STATISTIQUES',
         icon:'fa-solid fa-chart-line',
         link:'/dashboard/statistic'
-        },]
+        }
+    ]
         
   return (
     <>

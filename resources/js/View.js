@@ -9,6 +9,7 @@ import Volontaire from "./pages/Dashboard/Volontaire";
 import Urgences from "./pages/Dashboard/Urgences";
 import Association from "./pages/Dashboard/Association";
 import Statistics from "./pages/Dashboard/Statistics";
+import Demandes from "./pages/Dashboard/Demandes";
 import Level2 from "./ProtectedRoutes/Level2";
 import SideBar from "./pages/Dashboard/Compenent/SideBar";
 
@@ -70,6 +71,7 @@ function View() {
                 <Route path="carnaval" element={<Carnaval/>}/>  
                 <Route path="association" element={<Association/>}/>  
                 <Route path="statistic" element={<Statistics/>}/>  
+                <Route path="demandes" element={<Demandes/>}/>  
             </Route>  
         </Route>
         
