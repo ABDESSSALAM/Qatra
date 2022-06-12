@@ -5,9 +5,9 @@ import axios_api from '../../../CONF_AXIOS';
 function Cards() {
   const [carnavale,setCarnavale]=useState([]);
   useEffect( ()=>{
-    axios_api.get('/carnavale/all').then(res=>{
+    axios_api.get('/carnavale/3').then(res=>{
    // setCarnavale(res.data);
-    console.log(res.data) 
+   
     setCarnavale(res.data)
     });
     

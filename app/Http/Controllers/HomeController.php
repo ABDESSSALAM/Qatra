@@ -8,48 +8,7 @@ use App\Models\Carnavale;
 
 class HomeController extends Controller
 {
-    //get all carnavales
-
-    public function test(){
-
-
-        /**
-         * where
-         * $carnavals = DB::table('carnavales')
-           // ->where('IdCarnaval','>','1')
-            //->get();
-         */
-
-
-        /*
-        ------order by
-        /*
-        $carnavals = DB::table('carnavales')
-        ->orderBy('IdCarnaval','DESC')
-        ->get();
-        */
-
-        /**
-         * group by
-         * $carnavals = DB::table('carnavales')
-        ->get()->groupBy('Ville');
-        
-         */
-        
-        
-        // $carnavals=DB::table('carnavales')->get()->groupBy('dateDebut');
-        // return response()->json($carnavals);
-        $carnavals = DB::table('carnavales')
-        ->join('villes','carnavales.Ville','=','villes.id')
-        ->select('carnavales.*','villes.nomVille')
-        ->orderBy('dateDebut','DESC')
-        ->get();
-        return response()->json($carnavals);
-        // $carnavals=Carnavale::orderBy('dateDebut','DESC')->get();
-        // return response()->json($carnavals);
-    }
-
-
+   
     //get last For carnavales for home page
 
     public function getnbrCarnavales($nbr){
@@ -90,12 +49,14 @@ class HomeController extends Controller
         
         $urgences=DB::table('urgences')
         ->join('villes','urgences.Ville','=','villes.id')
-        ->join('demandes','urgences.IdUrg','=','demandes.IdUrg')
+        ->join('demandes','urgences.CodeD','=','demandes.CodeD')
+        ->join('users','demandes.IdCitoyen','=','users.id')
         ->select(
             'urgences.*',
             'villes.nomVille',
             'demandes.SanguinP',
             'demandes.Hospitale',
+            'users.telephone'
             )
         ->OrderBy('created_at','DESC')
         ->take($nbr)
@@ -109,7 +70,7 @@ class HomeController extends Controller
     public function getUrgences(){
         $urgences=DB::table('urgences')
         ->join('villes','urgences.Ville','=','villes.id')
-        ->join('demandes','urgences.IdUrg','=','demandes.IdUrg')
+        ->join('demandes','urgences.CodeD','=','demandes.CodeD')
         ->join('users','demandes.IdCitoyen','=','users.id')
         ->select(
             'urgences.*',

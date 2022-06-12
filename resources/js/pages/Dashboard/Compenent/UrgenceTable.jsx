@@ -37,7 +37,7 @@ function UrgenceTable(props) {
                       {row.nomVille}
                   </td>
                   <td className="px-6 py-4">
-                      {row.Telephone}
+                      {row.telephone}
                   </td>
                   <td className="px-6 py-4">
                       {row.Hospitale}
@@ -46,7 +46,7 @@ function UrgenceTable(props) {
                       {row.Volontaire==null? pending : done }
                   </td>
                   <td className="px-6 py-4 text-right">
-                      <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Valider</button>
+                      <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">complete</button>
                   </td>
               </tr>
           )

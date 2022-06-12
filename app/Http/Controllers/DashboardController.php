@@ -110,11 +110,14 @@ class DashboardController extends Controller
     }
 
     public function getDemandes(){
+
         $urgence=DB::table('demandes')
         ->join('citoyens','demandes.IdCitoyen','=','citoyens.IdCitoyen')
         ->join('users','citoyens.IdCitoyen','=','users.id')
         ->select('demandes.*','users.telephone','citoyens.Ville')
-        ->where('IdUrg',null)
+        ->whereNotIn('CodeD',function($rq){
+            $rq->select('CodeD')->from('urgences');
+        })
         ->get();
         return response()->json($urgence);
     }
@@ -134,6 +137,7 @@ class DashboardController extends Controller
         ->first()->IdAssoc;
         $urgence = Urgence::create([
             'Ville'=>$request->input('Ville'),
+            'codeD'=>$request->input('codeD'),
             'Association'=>$assoc,
         ]);
         if($urgence){
@@ -142,6 +146,11 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    public function getCopleteUrgences(){
+        
+    }
+
 
     public function test(){
         $assoc=DB::table('associations')

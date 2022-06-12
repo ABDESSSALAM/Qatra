@@ -4144,12 +4144,17 @@ __webpack_require__.r(__webpack_exports__);
 
 function DemandeTable(props) {
   var valider = function valider(code, ville) {
+    var data = {
+      Ville: ville,
+      codeD: code
+    };
+    console.log(data);
     _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__["default"].post('addUrgence', {
-      Ville: ville
+      Ville: ville,
+      codeD: code
     }).then(function (res) {
       return console.log(res.data);
     });
-    console.log(code, ville);
   }; //styling and data
 
 
@@ -4450,7 +4455,7 @@ function UrgenceTable(props) {
         children: row.nomVille
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "px-6 py-4",
-        children: row.Telephone
+        children: row.telephone
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "px-6 py-4",
         children: row.Hospitale
@@ -4462,7 +4467,7 @@ function UrgenceTable(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
           href: "#",
           className: "font-medium text-blue-600 dark:text-blue-500 hover:underline",
-          children: "Valider"
+          children: "complete"
         })
       })]
     }, idx);
@@ -5068,9 +5073,8 @@ function Cards() {
       setCarnavale = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get('/carnavale/all').then(function (res) {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get('/carnavale/3').then(function (res) {
       // setCarnavale(res.data);
-      console.log(res.data);
       setCarnavale(res.data);
     });
   }, []);

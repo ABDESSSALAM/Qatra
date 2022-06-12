@@ -18,13 +18,10 @@ class CreateDemandesTable extends Migration
             $table->string('SanguinP');
             $table->string('Hospitale');
             $table->unsignedBigInteger('IdCitoyen');
-            $table->unsignedBigInteger('IdUrg')->nullable();
             $table->foreign('IdCitoyen')->references('IdCitoyen')
-            ->on('citoyens');
-            $table->foreign('IdUrg')->references('IdUrg')
-            ->on('urgences');
-            
-            $table->timestamps();
+            ->on('citoyens')->onDelete('cascade')->onUpdate('cascade');
+           
+            $table->timestamp('DateUrg')->useCurrent();
         });
     }
 

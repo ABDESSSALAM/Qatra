@@ -4,9 +4,12 @@ import axios_api from '../../../CONF_AXIOS';
 function DemandeTable(props) {
     
     const valider = (code,ville)=>{
-        axios_api.post('addUrgence',{Ville:ville})
+       
+        const data={Ville:ville,codeD:code}
+        console.log(data)
+        axios_api.post('addUrgence',{Ville:ville,codeD:code})
         .then(res=>console.log(res.data))
-        console.log(code,ville)
+       
     }
 
     //styling and data
