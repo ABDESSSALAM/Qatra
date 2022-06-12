@@ -9,6 +9,7 @@ use App\Models\Volontaire;
 use App\Models\User;
 use App\Models\Association;
 use App\Models\Carnavale;
+use App\Models\Urgence;
 
 class DashboardController extends Controller
 {
@@ -82,28 +83,23 @@ class DashboardController extends Controller
     //add carnavale
     public function addCarnavale(Request $request){
         //only for association
-        $role =Auth::user()->role;
+        $user=Auth::user();
+        $role =$user->role;
         if($role!=3){
             return response([
                 'message'=>'not allowed'
             ]);
         }
-
-        $data=$request->validate([
-            'dateDebut'=>'required|date_format:Y-m-d',
-            'dateFin'=>'required|date_format:Y-m-d',
-            'coordinates'=>'regex:/^-?[0-9]+(\.\d+)?$/',
-            'Association'=>'required',
-            'Ville'=>'required',
-            'location'=>'required|string'
-        ]);
+        $assoc=DB::table('associations')
+        ->where('responsable',$user->id)
+        ->get()
+        ->first()->IdAssoc;
         $carnavale=Carnavale::create([
-            'dateDebut'=>$data['dateDebut'],
-            'dateFin'=>$data['dateFin'],
-            'coordinates'=>$data['lat'],
-            
-            'Association'=>$data['Association'],
-            'Ville'=>$data['Ville'],
+            'dateDebut'=>$request->input('dateDebut'),
+            'dateFin'=>$request->input('dateFin'),
+            'coordinates'=>$request->input('coordinates'),
+            'Association'=>$assoc,
+            'Ville'=>$request->input('ville'),
             'location'=>$request->input('location')
         ]);
         if($carnavale){
@@ -117,9 +113,42 @@ class DashboardController extends Controller
         $urgence=DB::table('demandes')
         ->join('citoyens','demandes.IdCitoyen','=','citoyens.IdCitoyen')
         ->join('users','citoyens.IdCitoyen','=','users.id')
-        ->select('demandes.*','users.telephone')
+        ->select('demandes.*','users.telephone','citoyens.Ville')
         ->where('IdUrg',null)
         ->get();
         return response()->json($urgence);
+    }
+
+    public function AddUrgence(Request $request){
+        //only for association
+        $user=Auth::user();
+        $role =$user->role;
+        if($role!=3){
+            return response([
+                'message'=>'not allowed'
+            ]);
+        }
+        $assoc=DB::table('associations')
+        ->where('responsable',$user->id)
+        ->get()
+        ->first()->IdAssoc;
+        $urgence = Urgence::create([
+            'Ville'=>$request->input('Ville'),
+            'Association'=>$assoc,
+        ]);
+        if($urgence){
+            return response([
+                'message'=>'ok'
+            ]);
+        }
+    }
+
+    public function test(){
+        $assoc=DB::table('associations')
+        ->where('responsable',3)
+        ->get()
+        ->first()->IdAssoc;
+        //$idAssoc=$assoc->IdAssoc;
+        dd($assoc);
     }
 }

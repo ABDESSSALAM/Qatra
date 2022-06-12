@@ -40,5 +40,6 @@ Route::middleware('auth:sanctum')->group(function(){
    
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/addCarnavale',[DashboardController::class,'addCarnavale']);
+    Route::post('/addUrgence',[DashboardController::class,'AddUrgence']);
 });
 

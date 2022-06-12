@@ -1,6 +1,5 @@
 import React from 'react'
-import { DataCarnavals } from '../FakeData/DataCarnavals';
-import axios_api from '../../../CONF_AXIOS';
+
 
 
 function CarnavalTable(props) {

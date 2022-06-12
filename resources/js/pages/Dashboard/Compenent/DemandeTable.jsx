@@ -1,7 +1,15 @@
 import React,{useState} from 'react'
-
+import axios_api from '../../../CONF_AXIOS';
 
 function DemandeTable(props) {
+    
+    const valider = (code,ville)=>{
+        axios_api.post('addUrgence',{Ville:ville})
+        .then(res=>console.log(res.data))
+        console.log(code,ville)
+    }
+
+    //styling and data
     const DATA_HEADER=['Sanguin Groupe','Hospitale','Telephone','date'];
     const STYLE_THEAD="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mt-4";
     const DateHeader=DATA_HEADER.map((head,idx)=><th key={idx} scope="col" className="px-6 py-3">{head}</th>)
@@ -28,7 +36,7 @@ function DemandeTable(props) {
                 </td>
                 
                 <td className="px-6 py-4 text-right">
-                    <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Valider</button>
+                    <button onClick={()=>valider(row.CodeD,row.Ville)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Valider</button>
                 </td>
             </tr>
         )

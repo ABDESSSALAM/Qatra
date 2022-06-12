@@ -130,4 +130,5 @@ class HomeController extends Controller
         return response()->json($villes);
 
     }
+    
 }

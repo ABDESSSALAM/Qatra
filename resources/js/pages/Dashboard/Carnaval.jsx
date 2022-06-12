@@ -31,18 +31,27 @@ function Carnaval() {
   
   //get association id
   
-
-   function addCarnavale()  {
-    //validation
-    if(location=='' || dateDebut=='' || ville==0){
-      alert('remplaire les champs obligatoire S.V.P');
-      return;
+    const addCarnavale = (e)=>{
+      e.preventDefault();
+      /*
+      'dateDebut'=>$request->input('dateDebut'),
+            'dateFin'=>$request->input('dateFin'),
+            'coordinates'=>$request->input('coordinates'),
+            'Association'=>$assoc,
+            'Ville'=>$request->input('ville'),
+            'location'=>$request->input('location')
+      */
+      let data={
+        dateDebut:dateDebut,
+        dateFin:dateFin,
+        ville:ville,
+        location:location
+      }
+      
+      axios_api.post('addCarnavale',data)
+      .then(res=>console.log(res.data))
     }
-    const dataSend={
-      location:location
-    }
-     
-  }
+   
 
 
   
