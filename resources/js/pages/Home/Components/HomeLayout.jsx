@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeNav from "./HomeNav";
+
 import TopHeader from "./TopHeader";
 
 
@@ -10,7 +10,7 @@ function HomeLayout({children}) {
    
     {/* <HomeNav /> */}
     
-    <main className='w-full cursor-pointer bg-primary py-2'>{children}</main>
+    <main className='w-full cursor-pointer  py-2'>{children}</main>
     </div>
   )
 }

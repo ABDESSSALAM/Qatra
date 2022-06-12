@@ -78,14 +78,14 @@ class AuthController extends Controller
         
 
        
-        $cookie=cookie('jwt',$token,60*48);
+        $cookie=cookie('jwt',$token,60*48,null,null,true,true);
 
         $response = [
             'user' => $user,
             'token' => $token
         ];
 
-        return response($response, 201);
+        return response($response, 201)->cookie($cookie);
     }
     
    
@@ -112,7 +112,9 @@ class AuthController extends Controller
 
        $user = Auth::user();
        $token= $user->createToken('token')->plainTextToken;
-       $cookie=cookie('jwt',$token,60*48);
+       $cookie=cookie('jwt',$token,60*48,null,null,true,true);
+     //  setcookie('jwt',$token,time()+(24*3600));
+       
 
        return response([
            'user'=>$user,
@@ -128,9 +130,9 @@ class AuthController extends Controller
         
         Auth::user()->tokens()->delete();
         $cookie = Cookie::forget('jwt');
-        $request->session()->invalidate();
+       // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        //$request->session()->regenerateToken();
         return response([
             'message'=>'Success'
         ])->withCookie($cookie);
@@ -139,5 +141,22 @@ class AuthController extends Controller
     //get user
     public function user(){
         return Auth::user();
+    }
+
+    public function AssociationInfo(){
+        //role 3 and 4
+        $user=Auth::user();
+        $userRole=$user->role;
+        if($userRole !=3 || $userRole !=4){
+            return response([
+                'message'=>'insifisante pour ce role'
+            ]);
+        }
+        $userID=$user->id;
+        
+        $assoc=DB::table('associations')
+        ->where('responsable','=',$userID)
+        ->select('IdAssoc')->get();
+        return response()->json($assoc);
     }
 }

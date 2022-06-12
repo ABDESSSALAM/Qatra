@@ -37,6 +37,12 @@ function SideBar(props) {
         text:'STATISTIQUES',
         icon:'fa-solid fa-chart-line',
         link:'/dashboard/statistic'
+        },
+        {
+        id:5,
+        text:'DEMANDES',
+        icon:'fa-regular fa-envelope',
+        link:'/dashboard/demandes'    
         }
     ]
         

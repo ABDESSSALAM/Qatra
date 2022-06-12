@@ -11,15 +11,13 @@ export const UserProvider=({children})=>{
     useEffect(()=>{
       axios_api.get('user')
         .then(res=>{
-          console.log(res.data)
           if(res.status==200){
-            console.log('user context 200')
             setUser(res.data)
             
           }else if(res.status==401){
             setUser({})
           }
-        }).catch(err=>console.log(err))
+        })
     },[])
     const contexValue={
        user,setUser

@@ -111,7 +111,9 @@ module.exports = {
       72: '18rem',
       80: '20rem',
       96: '24rem',
+      97:'29.3rem',
       98:'30rem',
+
       sq20:'20px',
     },
     animation: {
@@ -373,6 +375,7 @@ module.exports = {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
+        'Poppins'
       ],
       serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: [
@@ -384,6 +387,7 @@ module.exports = {
         '"Liberation Mono"',
         '"Courier New"',
         'monospace',
+        'Poppins'
       ],
     },
     fontSize: {

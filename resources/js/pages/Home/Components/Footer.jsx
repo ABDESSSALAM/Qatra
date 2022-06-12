@@ -14,16 +14,18 @@ function Footer() {
             
         </div>
         <div className='w-1/3 flex flex-col items-center border-r border-gray-100'>
-          <div className='flex items-center mt-2'>
-             <h2 className='text-2xl uppercase'>Localisation</h2>
-            <i className='fas fa-map-marker-alt ml-2 text-2xl'></i>
-          </div>
-          <p className='mt-6'>ISTAG BAB TIZIMI - MEKNES - MAROC</p>
+        
+          <h2 className='text-2xl '>localisation</h2>
+          <div className='flex mt-6 items-center self-start text-lg'>
+              <i className="fas fa-map-marker-alt mx-2"></i>
+              <p className=''>ISTAG BAB TIZIMI - MEKNES - MAROC</p>
+            </div>
+          
            
             
         </div>
         <div className='w-1/3 flex flex-col items-center text-lg'>
-            <h2 className='text-2xl uppercase mt-2'>contact</h2>
+            <h2 className='text-2xl  mt-2'>contact</h2>
             <div className='flex mt-4 items-center self-start'>
               <i className='fas fa-phone mx-2'></i>
               <p>+212600000000</p>
