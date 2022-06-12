@@ -28,6 +28,7 @@ Route::prefix('carnavale')->group(function(){
 });
 Route::prefix('urgences')->group(function(){
     Route::get('/all',[HomeController::class,'getUrgences']);
+    Route::get('/ville/{id}',[HomeController::class,'getUrgenceVille']);
     Route::get('/{nbr}',[HomeController::class,'getNbrUrgence']);
     
 });
