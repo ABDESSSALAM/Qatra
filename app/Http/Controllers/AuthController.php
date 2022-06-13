@@ -130,9 +130,9 @@ class AuthController extends Controller
         
         Auth::user()->tokens()->delete();
         $cookie = Cookie::forget('jwt');
-       // $request->session()->invalidate();
+       $request->session()->invalidate();
 
-        //$request->session()->regenerateToken();
+        $request->session()->regenerateToken();
         return response([
             'message'=>'Success'
         ])->withCookie($cookie);

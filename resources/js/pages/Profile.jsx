@@ -14,7 +14,10 @@ function Profile() {
     axios_api.get('urgences/all')
     .then(res=>setData(res.data))
   },[])
- 
+  const LogOut = async ()=>{
+    await axios_api.post('logout')
+    .then(res=>console.log(res.data))
+  }
   return (
        <HomeLayout>
          {/* <div>Profile : {params.id} </div> */}
@@ -47,14 +50,14 @@ function Profile() {
               <p>{user.email}</p>
             </div>
             {/* end */}
-            <div className=" flex mt-3  items-end  text-lg text-red-300 cursor-pointer">
-              <i className="fa-solid fa-right-from-bracket mx-2 "></i>
-              <h4>Log out</h4>
+            <div className=" flex flex-col justify-end h-24  text-lg text-red-300 cursor-pointer">
+              {/* <i className="fa-solid fa-right-from-bracket mx-2 "></i> */}
+              <button onClick={LogOut}  className='rounded-xl shadow-lg bg-secondary text-white py-1 px-3 text-xl '>déconnecter</button>
             </div>
           </div>
           {/* content */}
           <div className='bg-gray-50 flex flex-col items-center w-10/12'>
-            <h3 className='text-xl my-3'>la list des urgences need for your help</h3>
+            <h3 className='text-xl my-3'>la list des urgences </h3>
             <div className='w-full flex justify-around flex-wrap  '>
               {data.map(item=>{
                 return(
@@ -73,3 +76,4 @@ function Profile() {
 }
 
 export default Profile
+

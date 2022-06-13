@@ -21,8 +21,7 @@ function Login() {
       'password':pass
     }
     axios_api.post('login',data).then(res=>{
-      console.log("login")
-      console.log(res.data)
+      
       if(res.data.message=='Success'){
         setUser(res.data.user);
         let token=res.data.token;
