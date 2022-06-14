@@ -22,7 +22,7 @@ function Card(props) {
 
   
   return (
-    <div className='w-52 py-2 bg-primary flex flex-col items-stretch text-white rounded-lg shadow-lg mx-2'>
+    <div className='w-52  py-2 bg-primary flex flex-col items-stretch text-white rounded-lg shadow-lg mx-5 my-3'>
         <p className='text-xl text-center font-bold border-b-2 border-gray-300'>Caranaval</p>
         <div className='px-1 my-1'>
             <span className='uppercase font-extrabold text- mr-2'>à :</span>

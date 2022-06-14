@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div className='w-full bg-primary text-white flex h-32 cursor-pointer '>
         <div className='w-1/3 flex justify-start items-center flex-col border-r border-gray-100'>
-            <h2 className='text-2xl mt-1'>social media</h2>
+            <h2 className='text-2xl mt-1'>réseau sociaux</h2>
             <div className='mt-4 '>
               <i className='fab fa-facebook text-2xl mx-1  hover:translate-y-2'></i>
               <i className='fab fa-twitter text-2xl mx-1 hover:translate-y-2'></i>

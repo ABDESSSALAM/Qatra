@@ -527,6 +527,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 3rem;
   margin-right: 3rem;
 }
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -1062,6 +1070,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .font-normal {
   font-weight: 400;
+}
+.font-light {
+  font-weight: 300;
 }
 .uppercase {
   text-transform: uppercase;

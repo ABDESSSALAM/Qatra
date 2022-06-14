@@ -5066,7 +5066,7 @@ function Card(props) {
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "w-52 py-2 bg-primary flex flex-col items-stretch text-white rounded-lg shadow-lg mx-2",
+    className: "w-52  py-2 bg-primary flex flex-col items-stretch text-white rounded-lg shadow-lg mx-5 my-3",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       className: "text-xl text-center font-bold border-b-2 border-gray-300",
       children: "Caranaval"
@@ -5139,14 +5139,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Cards() {
+function Cards(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       carnavale = _useState2[0],
       setCarnavale = _useState2[1];
 
+  var url = props.url ? props.url : '/carnavale/3';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get('/carnavale/3').then(function (res) {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get(url).then(function (res) {
       // setCarnavale(res.data);
       setCarnavale(res.data);
     });
@@ -5160,7 +5161,7 @@ function Cards() {
     }, idx);
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "flex justify-center container w-11/12  my-2 cursor-pointer",
+    className: "flex flex-wrap justify-center container w-11/12  my-2 cursor-pointer",
     children: [carnavale.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
       children: "no data to display"
     }), carnavale.length > 0 && displayCarnavales]
@@ -5195,7 +5196,7 @@ function Footer() {
       className: "w-1/3 flex justify-start items-center flex-col border-r border-gray-100",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
         className: "text-2xl mt-1",
-        children: "social media"
+        children: "r\xE9seau sociaux"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "mt-4 ",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
@@ -5273,15 +5274,12 @@ function Header() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
     className: "flex flex-col  ",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TopHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "bg-primary w-full  h-72 my-0 flex justify-around py-0 opacity-95 text-white cursor-pointer",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "h-full flex flex-col justify-center items-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      className: "bg-primary w-full  h-72 my-0 flex items-center justify-around py-0 opacity-95 text-white cursor-pointer",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "font-semibold text-2xl",
           children: "Lorem ipsum dolor sit amet."
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "rounded-xl bg-secondary shadow-lg text-white py-1 px-2 text-lg font-bold",
-          children: " Participer "
-        })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
           src: "/imgs/img-header.png",
@@ -5402,32 +5400,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-function Search() {
-  var Villes = ['Meknes', 'Fes', 'Rabat'];
-  var ListVilles = Villes.map(function (ville, idx) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-      value: idx,
-      children: ville
-    }, idx);
+
+
+function Search(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      villes = _useState2[0],
+      setVilles = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__["default"].get('villes').then(function (res) {
+      return setVilles(res.data);
+    });
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+  var ListVilles = villes.map(function (ville) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+      value: ville.id,
+      children: ville.nomVille
+    }, ville.id);
+  });
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      idVille = _useState4[0],
+      setIdVille = _useState4[1];
+
+  var test = function test(e) {
+    e.preventDefault();
+    props.setUrl('carnavale/ville/2');
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
     className: "flex justify-end items-center bg-primary py-2 px-1 text-white rounded-md shadow-lg mx-2",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "mx-12",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
         className: "text-xl font-normal mr-1",
         children: "Ville :"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("select", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("select", {
         name: "ville",
         className: "text-black outline-none text-lg py-1 px-2 rounded-md ",
         children: ListVilles
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: test,
       type: "submit",
       className: "bg-white text-primary rounded-lg shadow-xl py-1 px-2 uppercase text-lg mx-2 font-semibold hover:bg-gray-100",
       children: "rechercher"
@@ -5489,7 +5522,7 @@ function TopHeader() {
   }
 
   var navItems = [{
-    title: 'Home',
+    title: 'Accueil',
     link: '/'
   }, {
     title: 'Carnavals',
@@ -5748,7 +5781,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Components/Search */ "./resources/js/pages/Home/Components/Search.jsx");
 /* harmony import */ var _Components_Cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Cards */ "./resources/js/pages/Home/Components/Cards.jsx");
 /* harmony import */ var _Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/HomeLayout */ "./resources/js/pages/Home/Components/HomeLayout.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var _Components_Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Card */ "./resources/js/pages/Home/Components/Card.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -5757,8 +5806,85 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function HomeCarnaval() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Search__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Cards__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('carnavale/all'),
+      _useState2 = _slicedToArray(_useState, 2),
+      url = _useState2[0],
+      setUrl = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      carnavale = _useState4[0],
+      setCarnavale = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      villes = _useState6[0],
+      setVilles = _useState6[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].get('villes').then(function (res) {
+      return setVilles(res.data);
+    });
+  });
+  var ListVilles = villes.map(function (ville) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+      value: ville.id,
+      children: ville.nomVille
+    }, ville.id);
+  });
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      idVille = _useState8[0],
+      setIdVille = _useState8[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].get(url).then(function (res) {
+      setCarnavale(res.data);
+    });
+  }, []);
+  console.log(url);
+  var displayCarnavales = carnavale.map(function (item, idx) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Card__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      IdCarnaval: item.IdCarnaval,
+      localisation: item.location,
+      debut: item.dateDebut,
+      fin: item.dateFin
+    }, idx);
+  });
+
+  var refresh = function refresh(e) {
+    e.preventDefault();
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+      className: "flex justify-end items-center bg-primary py-2 px-1 text-white rounded-md shadow-lg mx-2",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "mx-12",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          className: "text-xl font-normal mr-1",
+          children: "Ville :"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("select", {
+          onChange: function onChange(e) {
+            return setUrl('carnavale/ville/' + e.target.value);
+          },
+          name: "ville",
+          className: "text-black outline-none text-lg py-1 px-2 rounded-md ",
+          children: ListVilles
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+        onClick: refresh,
+        type: "submit",
+        className: "bg-white text-primary rounded-lg shadow-xl py-1 px-2 uppercase text-lg mx-2 font-semibold hover:bg-gray-100",
+        children: "rechercher"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "flex flex-wrap justify-center container w-11/12  my-2 cursor-pointer",
+      children: [carnavale.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+        children: "no data to display"
+      }), carnavale.length > 0 && displayCarnavales]
+    })]
   });
 }
 

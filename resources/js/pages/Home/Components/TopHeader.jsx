@@ -17,7 +17,7 @@ function TopHeader() {
   const navItems=[
     {
       
-      title:'Home',
+      title:'Accueil',
       link:'/'
     }
     ,
