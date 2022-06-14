@@ -140,6 +140,7 @@ class DashboardController extends Controller
             'codeD'=>$request->input('codeD'),
             'Association'=>$assoc,
         ]);
+        //update etat de demande
         if($urgence){
             return response([
                 'message'=>'ok'

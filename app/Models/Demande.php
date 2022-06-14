@@ -10,7 +10,7 @@ class Demande extends Model
     use HasFactory;
     //serialzation
 
-    protected $fillable=['SanguinP','Hospitale','IdCitoyen','IdUrg'];
+    protected $fillable=['SanguinP','Hospitale','IdCitoyen','IdUrg','Etat'];
     public $timestamps = false;
     // relations
     /**

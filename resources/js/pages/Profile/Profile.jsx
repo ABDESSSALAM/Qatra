@@ -1,19 +1,15 @@
 import React,{useContext,useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import HomeLayout from './Home/Components/HomeLayout';
-import UrgenceCard from './Home/Components/UrgenceCard';
-import { UserContext } from '../../Context/UserContext';
-import axios_api from '../CONF_AXIOS';
+import HomeLayout from '../Home/Components/HomeLayout';
+import VolontaireProfile from './VolontaireProfile';
+import CitoyenProfile from './CitoyenProfile';
+import { UserContext } from '../../../Context/UserContext';
+import axios_api from '../../CONF_AXIOS';
 function Profile() {
   //const params=useParams();
 
   const {user}=useContext(UserContext);
-  const [data,setData]=useState([])
-
-  useEffect(()=>{
-    axios_api.get('urgences/all')
-    .then(res=>setData(res.data))
-  },[])
+  
   const LogOut = async ()=>{
     await axios_api.post('logout')
     .then(res=>console.log(res.data))
@@ -57,16 +53,9 @@ function Profile() {
           </div>
           {/* content */}
           <div className='bg-gray-50 flex flex-col items-center w-10/12'>
-            <h3 className='text-xl my-3'>la list des urgences </h3>
-            <div className='w-full flex justify-around flex-wrap  '>
-              {data.map(item=>{
-                return(
-                  <UrgenceCard key={item.IdUrg} sangP={item.SanguinP} ville={item.nomVille} hospitale={item.Hospitale} />
-                )
-              })}
-              
+            {user.role==1 && <CitoyenProfile />}
+            {user.role==2 && <VolontaireProfile/> }
             
-            </div>
             
           </div>
          </div>

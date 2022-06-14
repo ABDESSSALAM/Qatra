@@ -40,7 +40,7 @@ function CitoyenInfo(props) {
       data={...data,...newData};
       props.setDataUser(data)
       //send data to server
-      await await axios_api.post('register',data)
+       await axios_api.post('register',data)
       .then(res=>console.log(res.data))
       .catch(err=>console.log(err))
     }

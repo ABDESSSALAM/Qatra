@@ -2,7 +2,7 @@ import {  Outlet, Route,Routes } from "react-router-dom";
 import React,{useState} from 'react'
 import Home from "./pages/Home/Home";
 import AuthWrapper from "./pages/Auth/AuthWrapper";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Carnaval from "./pages/Dashboard/Carnaval";
 import Volontaire from "./pages/Dashboard/Volontaire";

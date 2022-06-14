@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Carnavale;
+use App\Models\Demandes;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -112,4 +114,44 @@ class HomeController extends Controller
 
     }
     
+
+    //get demandes for citoyen
+    public function getDemandeCitoyen(){
+        $user=Auth::user();
+        $role =$user->role;
+        if($role!=1){
+            return response([
+                'message'=>'not allowed'
+            ]);
+        }
+
+        $urgences=DB::table('demandes')
+        ->where('IdCitoyen',$user->id)
+        ->get();
+        return response()->json($urgences);
+
+    }
+
+    //add demande par citoyen
+    public function addDemande(Request $request){
+
+             $user=Auth::user();
+             if($user->role !=1){
+                return response(['message'=>'pas autorisé']);
+             }
+             $idUser=$user->id;
+            $demande=Demandes::create([
+            'SanguinP'=>$request->input('sangP'),
+            'Hospitale'=>$request->input('hospitale'),
+            'IdCitoyen'=>$idUser,
+            'Etat'=>0
+            
+            ]);
+
+            if($demande){
+                return response([
+                    'message'=>'ok'
+                ]);
+            }
+    }
 }

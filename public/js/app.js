@@ -2205,7 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _pages_Home_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Home/Home */ "./resources/js/pages/Home/Home.jsx");
 /* harmony import */ var _pages_Auth_AuthWrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Auth/AuthWrapper */ "./resources/js/pages/Auth/AuthWrapper.jsx");
-/* harmony import */ var _pages_Profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Profile */ "./resources/js/pages/Profile.jsx");
+/* harmony import */ var _pages_Profile_Profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Profile/Profile */ "./resources/js/pages/Profile/Profile.jsx");
 /* harmony import */ var _pages_Dashboard_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Dashboard/Dashboard */ "./resources/js/pages/Dashboard/Dashboard.jsx");
 /* harmony import */ var _pages_Dashboard_Carnaval__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Dashboard/Carnaval */ "./resources/js/pages/Dashboard/Carnaval.jsx");
 /* harmony import */ var _pages_Dashboard_Volontaire__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Dashboard/Volontaire */ "./resources/js/pages/Dashboard/Volontaire.jsx");
@@ -2298,7 +2298,7 @@ function View() {
           path: "profile",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
             path: ":id",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_pages_Profile__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_pages_Profile_Profile__WEBPACK_IMPORTED_MODULE_3__["default"], {})
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
@@ -3107,10 +3107,6 @@ function CitoyenInfo(props) {
               });
 
             case 7:
-              _context.next = 9;
-              return _context.sent;
-
-            case 9:
             case "end":
               return _context.stop();
           }
@@ -5793,10 +5789,10 @@ function HomeImportance() {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Profile.jsx":
-/*!****************************************!*\
-  !*** ./resources/js/pages/Profile.jsx ***!
-  \****************************************/
+/***/ "./resources/js/pages/Profile/CitoyenProfile.jsx":
+/*!*******************************************************!*\
+  !*** ./resources/js/pages/Profile/CitoyenProfile.jsx ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5807,11 +5803,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Home_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Home/Components/HomeLayout */ "./resources/js/pages/Home/Components/HomeLayout.jsx");
-/* harmony import */ var _Home_Components_UrgenceCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Home/Components/UrgenceCard */ "./resources/js/pages/Home/Components/UrgenceCard.jsx");
-/* harmony import */ var _Context_UserContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Context/UserContext */ "./resources/Context/UserContext.js");
-/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5835,14 +5828,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
-
-function Profile() {
-  //const params=useParams();
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_4__.UserContext),
-      user = _useContext.user;
+function CitoyenProfile() {
+  //styling and data
+  var DATA_HEADER = ['Sanguin Groupe', 'Hospitale', 'date', 'Etat'];
+  var STYLE_THEAD = "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mt-4";
+  var DateHeader = DATA_HEADER.map(function (head, idx) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+      scope: "col",
+      className: "px-6 py-3",
+      children: head
+    }, idx);
+  }); //manage data for table
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -5850,10 +5846,204 @@ function Profile() {
       setData = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_5__["default"].get('urgences/all').then(function (res) {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get('demandesCitoyen').then(function (res) {
       return setData(res.data);
     });
   }, []);
+  var ROW_TR_STYLE = " border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700";
+  var ROW_TH_STYLE = "px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap";
+
+  var pending = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+    className: "bg-yellow-300 text-black font-semibold px-2 py-1 rounded-lg shadow-sm",
+    children: "encore"
+  });
+
+  var done = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+    className: "bg-green-400 text-black font-semibold px-2 py-1 rounded-lg shadow-sm",
+    children: "accepter"
+  });
+
+  var dataRow = data.map(function (row) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+      className: ROW_TR_STYLE,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+        scope: "row",
+        className: ROW_TH_STYLE,
+        children: row.SanguinP
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+        className: "px-6 py-4",
+        children: row.Hospitale
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+        className: "px-6 py-4",
+        children: row.DateUrg.slice(0, 10)
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+        className: "px-6 py-4",
+        children: row.Etat == 0 ? pending : done
+      })]
+    }, row.CodeD);
+  }); //form
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      open = _useState4[0],
+      setOpen = _useState4[1];
+
+  var groupSang = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+  var ListGroupSang = groupSang.map(function (sg, idx) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+      value: sg,
+      children: sg
+    }, idx);
+  });
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      sangP = _useState6[0],
+      setSangP = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      hospitale = _useState8[0],
+      setHospitale = _useState8[1];
+
+  var addDemande = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+
+              if (sangP == '') {
+                setSangP(groupSang[0]);
+              }
+
+              data = {
+                sangP: sangP,
+                hospitale: hospitale
+              };
+              _context.next = 5;
+              return _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].post('addDemande', data).then(function (res) {
+                return console.log(res.data);
+              });
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function addDemande(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "relative overflow-x-auto shadow-md sm:rounded-lg my-2 mt-3 cursor-pointer w-2/3 ",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
+      className: "w-full text-sm text-left text-gray-500 dark:text-gray-400",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
+        className: STYLE_THEAD,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", {
+          children: DateHeader
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+        children: dataRow
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "w-full flex flex-col items-center justify-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: function onClick() {
+          setOpen(!open);
+        },
+        className: "text-blue-500 bg-gray-200 rounded-md shadow-lg py-1 px-2 my-2 w-20",
+        children: "nouveau"
+      })
+    }), open && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      className: "flex w-11/12 justify-start p-2 items-end",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "flex flex-col justify-around h-20 mx-2 w-2/6",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "text-sm font-medium text-gray-900 dark:text-gray-400",
+          children: "Sanguin Groupe"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+          onChange: function onChange(e) {
+            return setSangP(e.target.value);
+          },
+          className: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+          children: ListGroupSang
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "flex flex-col justify-around h-20 mx-2 w-2/6",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "text-sm font-medium text-gray-900 dark:text-gray-400",
+          children: "Hospitale"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+          onChange: function onChange(e) {
+            return setHospitale(e.target.value);
+          },
+          type: "text",
+          className: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: " flex  justify-end items-center  h-20  mx-2 w-4/6  ",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          onClick: addDemande,
+          className: "bg-primary text-white py-2 mt-2 w-24 rounded-md shadow-md hover:text-gray-400",
+          children: "valider"
+        })
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CitoyenProfile);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Profile/Profile.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/pages/Profile/Profile.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Home_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Home/Components/HomeLayout */ "./resources/js/pages/Home/Components/HomeLayout.jsx");
+/* harmony import */ var _VolontaireProfile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VolontaireProfile */ "./resources/js/pages/Profile/VolontaireProfile.jsx");
+/* harmony import */ var _CitoyenProfile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CitoyenProfile */ "./resources/js/pages/Profile/CitoyenProfile.jsx");
+/* harmony import */ var _Context_UserContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Context/UserContext */ "./resources/Context/UserContext.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+
+
+
+
+
+function Profile() {
+  //const params=useParams();
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_5__.UserContext),
+      user = _useContext.user;
 
   var LogOut = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -5862,7 +6052,7 @@ function Profile() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_5__["default"].post('logout').then(function (res) {
+              return _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_6__["default"].post('logout').then(function (res) {
                 return console.log(res.data);
               });
 
@@ -5879,68 +6069,122 @@ function Profile() {
     };
   }();
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Home_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Home_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "flex w-screen ",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "bg-primary px-2 py-1 text-white w-2/12 h-80 shadow-lg mx-1 rounded-md",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "flex flex-col items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "bg-gray-300 rounded-full flex flex-col items-center justify-center h-24 w-24",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
               className: "fa-solid fa-user text-6xl"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
             className: "font-bold",
             children: user.nom + " " + user.prenom
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h4", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
             className: "text-gray-100",
             children: [user.role == 1 && 'Citoyen', user.role == 2 && 'Volontaire', (user.role == 3 || user.role == 4) && 'responsable ', user.role == 5 && 'responsable ']
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "flex items-center mt-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
             className: "fas fa-phone mx-2"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
             children: user.telephone
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "flex items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
             className: "fa-regular fa-envelope mx-2"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
             children: user.email
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: " flex flex-col justify-end h-24  text-lg text-red-300 cursor-pointer",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
             onClick: LogOut,
             className: "rounded-xl shadow-lg bg-secondary text-white py-1 px-3 text-xl ",
             children: "d\xE9connecter"
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "bg-gray-50 flex flex-col items-center w-10/12",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-          className: "text-xl my-3",
-          children: "la list des urgences "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "w-full flex justify-around flex-wrap  ",
-          children: data.map(function (item) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Home_Components_UrgenceCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              sangP: item.SanguinP,
-              ville: item.nomVille,
-              hospitale: item.Hospitale
-            }, item.IdUrg);
-          })
-        })]
+        children: [user.role == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CitoyenProfile__WEBPACK_IMPORTED_MODULE_4__["default"], {}), user.role == 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_VolontaireProfile__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
       })]
     })
   });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Profile/VolontaireProfile.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/pages/Profile/VolontaireProfile.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var _Home_Components_UrgenceCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Home/Components/UrgenceCard */ "./resources/js/pages/Home/Components/UrgenceCard.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+function VolontaireProfile() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__["default"].get('urgences/all').then(function (res) {
+      return setData(res.data);
+    });
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+      className: "text-xl my-3",
+      children: "la list des urgences "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "w-full flex justify-around flex-wrap  ",
+      children: data.map(function (item) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Home_Components_UrgenceCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          sangP: item.SanguinP,
+          ville: item.nomVille,
+          hospitale: item.Hospitale
+        }, item.IdUrg);
+      })
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VolontaireProfile);
 
 /***/ }),
 

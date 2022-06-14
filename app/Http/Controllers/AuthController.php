@@ -53,6 +53,7 @@ class AuthController extends Controller
                     'SanguinP'=>$request->input('sangP'),
                     'Hospitale'=>$request->input('hospitale'),
                     'IdCitoyen'=>$idUser,
+                    'Etat'=>0
                     
                 ]);
                 break;
@@ -109,7 +110,7 @@ class AuthController extends Controller
            ],401);
            //401 HTTP UNAUTHORIZED
        }
-
+       
        $user = Auth::user();
        $token= $user->createToken('token')->plainTextToken;
        $cookie=cookie('jwt',$token,60*48,null,null,true,true);
