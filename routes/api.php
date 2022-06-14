@@ -32,9 +32,13 @@ Route::prefix('urgences')->group(function(){
     Route::get('/{nbr}',[HomeController::class,'getNbrUrgence']);
     
 });
+
+//test
 Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
 Route::get('/associations',[DashboardController::class,'getAssociation']);
 Route::get('/demandes',[DashboardController::class,'getDemandes']);
+Route::get('/associationActif',[DashboardController::class,'associationActif']);
+Route::get('/associationNonActif',[DashboardController::class,'associationNonActif']);
 
 //test
 Route::post('/addParticipationUrgence',[HomeController::class,'addParticipationUrgence']);
@@ -42,7 +46,12 @@ Route::post('/addParticipationUrgence',[HomeController::class,'addParticipationU
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
     Route::get('/demandesCitoyen',[HomeController::class,'getDemandeCitoyen']);
+    
+    // Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
+    // Route::get('/associations',[DashboardController::class,'getAssociation']);
+    // Route::get('/demandes',[DashboardController::class,'getDemandes']);
 
+    Route::post('verifyAssociation',[DashboardController::class,'verifyAssociation']);
     Route::post('/addDemande',[HomeController::class,'addDemande']);
     Route::post('/addParticipationCarnavale',[HomeController::class,'addParticipationCarnavale']);
     Route::post('/logout',[AuthController::class,'logout']);

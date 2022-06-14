@@ -45,9 +45,12 @@ function UrgenceTable(props) {
                   <td className="px-6 py-4">
                       {row.Volontaire==null? pending : done }
                   </td>
+                  {row.Volontaire==null &&
                   <td className="px-6 py-4 text-right">
                       <button onClick={()=>{props.active(row.IdUrg)} } className="font-medium text-blue-600 dark:text-blue-500 hover:underline">complete</button>
                   </td>
+                  }
+                  
               </tr>
           )
       })

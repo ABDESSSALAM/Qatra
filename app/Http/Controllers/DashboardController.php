@@ -53,6 +53,7 @@ class DashboardController extends Controller
             'associations.IdAssoc',
             'associations.nomAssoc',
             'associations.etat',
+            'associations.responsable',
             'users.telephone',
             'villes.nomVille'
         )->get();
@@ -67,18 +68,63 @@ class DashboardController extends Controller
         }
     }
 
-
+    //get association actif
+    public function associationActif(){
+        $associations = DB::table('associations')
+        ->join('users','associations.responsable','=','users.id')
+        ->join('villes','associations.Ville','=','villes.id')
+        ->where('etat',1)
+        ->select(
+            'associations.IdAssoc',
+            'associations.nomAssoc',
+            'associations.etat',
+            'associations.responsable',
+            'users.telephone',
+            'villes.nomVille'
+        )->get();
+        return response()->json($associations);
+    }
+    //get association actif
+    public function associationNonActif(){
+        $associations = DB::table('associations')
+        ->join('users','associations.responsable','=','users.id')
+        ->join('villes','associations.Ville','=','villes.id')
+        ->where('etat',0)
+        ->select(
+            'associations.IdAssoc',
+            'associations.nomAssoc',
+            'associations.responsable',
+            'associations.etat',
+            'users.telephone',
+            'villes.nomVille'
+        )->get();
+        return response()->json($associations);
+    }
     //verifie association
 
-    public function verifyAssociation($id){
+    public function verifyAssociation(Request $request){
 
     //only for admin role=5
         $role =Auth::user()->role;
-        if($role==5){
-            $user=User::where('id',$id)->update(['role'=>3]);
-            return response($user); 
+        if($role!=5){
+             return response(['message'=>'non authorizer']);
         }
-        
+        try{
+            DB::beginTransaction();
+            DB::table('associations')
+            ->where('IdAssoc',$request->input('IdAssoc'))
+            ->update(['etat'=>1]);
+            DB::table('users')
+            ->where('id',$request->input('IdUser'))
+            ->update(['role'=>4]);
+            DB::commit();
+            return response(['message'=>'ok']);
+        }catch(Exception $e){
+            DB::rollback();
+            return response(['message'=>$e->getMessage()]);
+         }
+        $user=User::where('id',$id)->update(['role'=>3]);
+            return response($user);
         //return 1 mean ok /\ 0=non 
     }
 

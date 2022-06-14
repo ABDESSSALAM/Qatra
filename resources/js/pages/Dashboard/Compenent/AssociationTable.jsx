@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import axios_api from '../../../CONF_AXIOS';
 import { DataAssociation } from '../FakeData/DataCarnavals'
 
 function AssociationTable(props) {
@@ -17,8 +18,8 @@ function AssociationTable(props) {
      })
      
      //end header
-     const pending=<span className='bg-yellow-300 text-black font-semibold px-2 py-1 rounded-lg shadow-sm'>pending</span>
-     const done=<span className='bg-green-400 text-black font-semibold px-2 py-1 rounded-lg shadow-sm'>done</span>
+     const pending=<span className='bg-yellow-300 text-black font-semibold px-2 py-1 rounded-lg shadow-sm'>encore</span>
+     const done=<span className='bg-green-400 text-black font-semibold px-2 py-1 rounded-lg shadow-sm'>verifier</span>
        
      const ROW_TR_STYLE=" border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700";
      const ROW_TH_STYLE="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap";
@@ -40,12 +41,24 @@ function AssociationTable(props) {
                  <td className="px-6 py-4">
                      {row.etat==0? pending : done }
                  </td>
+                 {row.etat==0 &&
                  <td className="px-6 py-4 text-right">
-                     <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Valider</button>
+                     <button onClick={()=>{valider(row.IdAssoc,row.responsable)}} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Valider</button>
                  </td>
+                 }
+                 
              </tr>
          )
      })
+     const valider=async (IdAssoc,IdUser)=>{
+        const upData={
+            IdAssoc:IdAssoc,
+            IdUser:IdUser
+        }
+        
+        await axios_api.post('verifyAssociation',upData)
+        .then(res=>console.log(res.data))
+     }
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-2 mt-3 cursor-pointer">
 

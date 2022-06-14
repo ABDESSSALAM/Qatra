@@ -41,7 +41,7 @@ function Profile() {
               {user.role==1 && 'Citoyen'}
               {user.role==2 && 'Volontaire'}
               {(user.role==3 || user.role==4) && 'responsable '}
-              {user.role==5 && 'responsable '}
+              {user.role==5 && 'administrateur'}
 
               </h4>
             

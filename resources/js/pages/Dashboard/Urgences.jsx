@@ -29,7 +29,7 @@ function Urgences() {
   },[])
   const ListVolontaire=volontaires.map((volontaire)=><option key={volontaire.IdVolontaire}  value={volontaire.IdVolontaire} >{volontaire.nom+' ' +volontaire.prenom }</option>)
     
-    const [IdVolontaire,setIdVolontaire]=useState('')
+  const [IdVolontaire,setIdVolontaire]=useState(0)
   const addParticiption =async (e)=>{
     e.preventDefault()
     const data={
