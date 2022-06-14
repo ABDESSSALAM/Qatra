@@ -6,7 +6,7 @@ function Search(props) {
     useEffect(()=>{
       axios_api.get('villes')
       .then(res=>setVilles(res.data))
-    })
+    },[])
     const ListVilles=villes.map((ville)=><option key={ville.id}  value={ville.id} >{ville.nomVille}</option>)
     const [idVille,setIdVille]=useState(0);
     const test=(e)=>{

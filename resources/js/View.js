@@ -57,7 +57,7 @@ function View() {
                     <SideBar isOpen={open} toggleOpen={toggleOpen} />
                 </div>
                 <div className={`${open ? 'w-4/5' : 'w-11/12'} flex flex-col `} >
-                    <Navbar />
+                    {/* <Navbar /> */}
                     <main className='h-5/6 px-4 py-2'><Outlet/></main>
                 </div>
                     

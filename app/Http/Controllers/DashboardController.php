@@ -25,11 +25,13 @@ class DashboardController extends Controller
         ->join('volontaires','users.id','=','volontaires.IdVolontaire')
         ->join('villes','volontaires.Ville','=','villes.id')
         ->select(
+            'volontaires.IdVolontaire',
             'users.nom',
             'users.prenom',
             'users.telephone',
             'villes.nomVille',
-            'volontaires.SanguinV')->get();
+            'volontaires.SanguinV',
+            )->get();
         return response()->json($volontaire);
         /*$role =Auth::user()->role;
         if($role>3){

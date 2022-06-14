@@ -2309,12 +2309,12 @@ function View() {
                 isOpen: open,
                 toggleOpen: toggleOpen
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)("div", {
               className: "".concat(open ? 'w-4/5' : 'w-11/12', " flex flex-col "),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_pages_Dashboard_Compenent_Navbar__WEBPACK_IMPORTED_MODULE_13__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)("main", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)("main", {
                 className: "h-5/6 px-4 py-2",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Outlet, {})
-              })]
+              })
             })]
           })
         }),
@@ -3775,9 +3775,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Compenent_CarnavalTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Compenent/CarnavalTable */ "./resources/js/pages/Dashboard/Compenent/CarnavalTable.jsx");
-/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
-/* harmony import */ var _Context_UserContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Context/UserContext */ "./resources/Context/UserContext.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Compenent_Informative__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Compenent/Informative */ "./resources/js/pages/Dashboard/Compenent/Informative.jsx");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var _Context_UserContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Context/UserContext */ "./resources/Context/UserContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3797,6 +3798,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Carnaval() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3808,121 +3810,125 @@ function Carnaval() {
   }; //fetch ville
 
 
-  var Villes = ['non', 'Meknes', 'Fes', 'Rabat'];
-  var ListVilles = Villes.map(function (ville, idx) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-      value: idx,
-      children: ville
-    }, idx);
-  }); //featch data
-
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      data = _useState4[0],
-      setData = _useState4[1];
+      villes = _useState4[0],
+      setVilles = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].get('carnavale/all').then(function (res) {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_3__["default"].get('villes').then(function (res) {
+      return setVilles(res.data);
+    });
+  });
+  var ListVilles = villes.map(function (ville) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+      value: ville.id,
+      children: ville.nomVille
+    }, ville.id);
+  }); //featch data
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      data = _useState6[0],
+      setData = _useState6[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_3__["default"].get('carnavale/all').then(function (res) {
       return setData(res.data);
     })["catch"](function (err) {
       return console.log(err);
     });
   }, []); //add carnaval
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      location = _useState6[0],
-      setLocation = _useState6[1];
-
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      dateDebut = _useState8[0],
-      setDateDebut = _useState8[1];
+      location = _useState8[0],
+      setLocation = _useState8[1];
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      dateFin = _useState10[0],
-      setDateFin = _useState10[1];
+      dateDebut = _useState10[0],
+      setDateDebut = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
-      ville = _useState12[0],
-      setVille = _useState12[1];
+      dateFin = _useState12[0],
+      setDateFin = _useState12[1];
 
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_3__.UserContext),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState14 = _slicedToArray(_useState13, 2),
+      ville = _useState14[0],
+      setVille = _useState14[1];
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_4__.UserContext),
       user = _useContext.user; //get association id
 
 
   var addCarnavale = function addCarnavale(e) {
     e.preventDefault();
-    /*
-    'dateDebut'=>$request->input('dateDebut'),
-          'dateFin'=>$request->input('dateFin'),
-          'coordinates'=>$request->input('coordinates'),
-          'Association'=>$assoc,
-          'Ville'=>$request->input('ville'),
-          'location'=>$request->input('location')
-    */
-
     var data = {
       dateDebut: dateDebut,
       dateFin: dateFin,
       ville: ville,
       location: location
     };
-    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_2__["default"].post('addCarnavale', data).then(function (res) {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_3__["default"].post('addCarnavale', data).then(function (res) {
       return console.log(res.data);
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "w-full h-full flex flex-col",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Compenent_Informative__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      bg: "bg-primary",
+      title: "la list des carnavale",
+      icon: "fa-solid fa-caravan"
+    }), user.role == 4 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       onClick: toggleOpen,
       className: "self-end bg-green-600 text-white font-medium px-2 py-1 rounded-lg shadow-md",
       children: "Nouveau"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
       className: "".concat(open ? 'flex' : 'hidden', " w-full  flex-col  bg-primary text-white my-2 py-2 px-1 shadow-md rounded-sm ease-in-out duration-1000"),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "flex justify-evenly items-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
             className: "mr-1 text-lg",
             children: "localisation :"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             type: "text",
             onChange: function onChange(e) {
               return setLocation(e.target.value);
             },
             className: "rounded-md outline-none p-1 text-black"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
             className: "mr-1 text-lg",
             children: "date debut :"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             type: "date",
             onChange: function onChange(e) {
               return setDateDebut(e.target.value);
             },
             className: "rounded-md outline-none p-1 text-black"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
             className: "mr-1 text-lg",
             children: "date fin :"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             type: "date",
             onChange: function onChange(e) {
               return setDateFin(e.target.value);
             },
             className: "rounded-md outline-none p-1 text-black"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
             className: "mr-1 text-lg",
             children: "Ville :"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
             onChange: function onChange(e) {
               return setVille(e.target.value);
             },
@@ -3931,12 +3937,12 @@ function Carnaval() {
             children: ListVilles
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
         onClick: addCarnavale,
         className: "self-end bg-green-600 text-white font-medium px-2 py-1 rounded-lg shadow-md mt-2 ml-3",
         children: "Ajouter"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Compenent_CarnavalTable__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Compenent_CarnavalTable__WEBPACK_IMPORTED_MODULE_1__["default"], {
       data: data
     })]
   });
@@ -4049,18 +4055,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Context_UserContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../Context/UserContext */ "./resources/Context/UserContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 
 function CarnavalTable(props) {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_1__.UserContext),
+      user = _useContext.user;
+
   var DATA_HEADER = ['localisation', 'Date Debut', 'Date Fin', 'Ville'];
   var data = props.data; //header
 
   var STYLE_THEAD = "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400";
   var DateHeader = DATA_HEADER.map(function (head, idx) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
       scope: "col",
       className: "px-6 py-3",
       children: head
@@ -4069,24 +4080,24 @@ function CarnavalTable(props) {
   var ROW_TR_STYLE = "border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700";
   var ROW_TH_STYLE = "px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap";
   var dataRow = data.map(function (row, idx) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
       className: ROW_TR_STYLE,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
         scope: "row",
         className: ROW_TH_STYLE,
         children: row.location.toUpperCase()
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
         className: "px-6 py-4",
         children: row.dateDebut
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
         className: "px-6 py-4",
         children: row.dateFin
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
         className: "px-6 py-4",
         children: row.nomVille
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      }), user.role == 4 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
         className: "px-6 py-4 text-right",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           href: "#",
           className: "font-medium text-blue-600 dark:text-blue-500 hover:underline",
           children: "Modifier"
@@ -4094,21 +4105,21 @@ function CarnavalTable(props) {
       })]
     }, idx);
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "relative overflow-x-auto shadow-md sm:rounded-lg",
-    children: [dataRow.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+    children: [dataRow.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
       className: "w-full text-sm text-left text-gray-500 dark:text-gray-400",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
         className: STYLE_THEAD,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
           children: DateHeader
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
         children: dataRow
       })]
-    }), dataRow.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    }), dataRow.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "bg-gray-200 w-11/12 text-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
         children: "no data to display..."
       })
     })]
@@ -4233,7 +4244,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Informative(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "".concat(props.bg, "  text-white flex w-full items-end justify-center py-3 rounded-md shadow-lg cursor-pointer"),
+    className: "".concat(props.bg, "  text-white flex w-full items-end justify-center py-3 rounded-md shadow-lg cursor-pointer my-3"),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
       className: "text-5xl ".concat(props.icon)
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -4461,7 +4472,9 @@ function UrgenceTable(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "px-6 py-4 text-right",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          href: "#",
+          onClick: function onClick() {
+            props.active(row.IdUrg);
+          },
           className: "font-medium text-blue-600 dark:text-blue-500 hover:underline",
           children: "complete"
         })
@@ -4846,11 +4859,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Compenent_UrgenceTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Compenent/UrgenceTable */ "./resources/js/pages/Dashboard/Compenent/UrgenceTable.jsx");
-/* harmony import */ var _Compenent_Informative__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Compenent/Informative */ "./resources/js/pages/Dashboard/Compenent/Informative.jsx");
-/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Compenent_UrgenceTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Compenent/UrgenceTable */ "./resources/js/pages/Dashboard/Compenent/UrgenceTable.jsx");
+/* harmony import */ var _Compenent_Informative__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Compenent/Informative */ "./resources/js/pages/Dashboard/Compenent/Informative.jsx");
+/* harmony import */ var _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../CONF_AXIOS */ "./resources/js/CONF_AXIOS.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4871,26 +4892,118 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Urgences() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_3__["default"].get('urgences/all').then(function (res) {
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].get('urgences/all').then(function (res) {
       return setData(res.data);
     })["catch"](function (err) {
       return console.log(err);
     });
+  }, []); //form participation
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      open = _useState4[0],
+      setOpen = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      urgID = _useState6[0],
+      setUrgID = _useState6[1];
+
+  var active = function active(IDurg) {
+    setOpen(true);
+    console.log(IDurg);
+    setUrgID(IDurg);
+  };
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      volontaires = _useState8[0],
+      setVolontaires = _useState8[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].get('volontaires').then(function (res) {
+      return setVolontaires(res.data);
+    });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  var ListVolontaire = volontaires.map(function (volontaire) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+      value: volontaire.IdVolontaire,
+      children: volontaire.nom + ' ' + volontaire.prenom
+    }, volontaire.IdVolontaire);
+  });
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      IdVolontaire = _useState10[0],
+      setIdVolontaire = _useState10[1];
+
+  var addParticiption = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              data = {
+                IdUrg: urgID,
+                IdVolontaire: IdVolontaire
+              };
+              _context.next = 4;
+              return _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].post('addParticipationUrgence', data).then(function (res) {
+                return console.log(res.data);
+              });
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function addParticiption(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "flex flex-col w-full h-full ",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Compenent_Informative__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Compenent_Informative__WEBPACK_IMPORTED_MODULE_3__["default"], {
       bg: "bg-secondary",
       title: "la list des Urgences",
       icon: "fa-solid fa-truck-medical"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Compenent_UrgenceTable__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      data: data
+    }), open && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+      className: "flex w-2/3 justify-start p-2 items-center border rounded-md shadow-md",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "flex items-center  mx-2 w-2/3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "text-sm w-1/2 font-medium text-gray-900 dark:text-gray-400",
+          children: "Sanguin Groupe"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
+          onChange: function onChange(e) {
+            return setIdVolontaire(e.target.value);
+          },
+          className: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+          children: ListVolontaire
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: " flex  justify-end items-center  h-20  mx-2 w-1/3  ",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          onClick: addParticiption,
+          className: "bg-primary text-white py-2 mt-2 w-24 rounded-md shadow-md hover:text-gray-400",
+          children: "valider"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Compenent_UrgenceTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      data: data,
+      active: active
     })]
   });
 }
@@ -5429,7 +5542,7 @@ function Search(props) {
     _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__["default"].get('villes').then(function (res) {
       return setVilles(res.data);
     });
-  });
+  }, []);
   var ListVilles = villes.map(function (ville) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
       value: ville.id,
@@ -5825,7 +5938,7 @@ function HomeCarnaval() {
     _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].get('villes').then(function (res) {
       return setVilles(res.data);
     });
-  });
+  }, []);
   var ListVilles = villes.map(function (ville) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
       value: ville.id,

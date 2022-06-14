@@ -172,4 +172,19 @@ class HomeController extends Controller
         }
         
     }
+
+    public function addParticipationUrgence(Request $request){
+        try{
+            DB::beginTransaction();
+            DB::table('urgences')
+           ->where('IdUrg',$request->input('IdUrg'))
+           ->update(['Volontaire'=>$request->input('IdVolontaire')]);
+           DB::commit();
+           return response(['message'=>'ok']);    
+        
+        }catch(Exception $e){
+            DB::rollback();
+            return response(['message'=>$e->getMessage()]);
+         }
+    }
 }

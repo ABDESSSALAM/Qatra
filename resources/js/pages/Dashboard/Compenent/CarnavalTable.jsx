@@ -1,8 +1,9 @@
-import React from 'react'
-
+import React,{useContext} from 'react'
+import { UserContext } from '../../../../Context/UserContext';
 
 
 function CarnavalTable(props) {
+    const {user}=useContext(UserContext)
     const DATA_HEADER=['localisation','Date Debut','Date Fin','Ville'];
      const data=props.data;
         
@@ -39,9 +40,9 @@ function CarnavalTable(props) {
                 <td className="px-6 py-4">
                     {row.nomVille}
                 </td>
-                <td className="px-6 py-4 text-right">
+                {user.role==4 && <td className="px-6 py-4 text-right">
                     <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</button>
-                </td>
+                </td> } 
             </tr>
         )
     })

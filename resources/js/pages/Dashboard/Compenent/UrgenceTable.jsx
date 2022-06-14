@@ -46,11 +46,12 @@ function UrgenceTable(props) {
                       {row.Volontaire==null? pending : done }
                   </td>
                   <td className="px-6 py-4 text-right">
-                      <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">complete</button>
+                      <button onClick={()=>{props.active(row.IdUrg)} } className="font-medium text-blue-600 dark:text-blue-500 hover:underline">complete</button>
                   </td>
               </tr>
           )
       })
+      
   
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-2 mt-3 cursor-pointer">

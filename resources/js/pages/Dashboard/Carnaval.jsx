@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useCallback, useContext} from 'react'
 import CarnavalTable from './Compenent/CarnavalTable';
+import Informative from './Compenent/Informative';
 import axios_api from '../../CONF_AXIOS';
 import { UserContext } from '../../../Context/UserContext';
 
@@ -9,8 +10,12 @@ function Carnaval() {
     setopen(!open)}
 
     //fetch ville
-  const Villes=['non','Meknes','Fes','Rabat'];
-  const ListVilles=Villes.map((ville,idx)=><option key={idx} value={idx}>{ville}</option>)
+    const [villes,setVilles]=useState([]);
+    useEffect(()=>{
+      axios_api.get('villes')
+      .then(res=>setVilles(res.data))
+    })
+    const ListVilles=villes.map((ville)=><option key={ville.id}  value={ville.id} >{ville.nomVille}</option>)
   
   //featch data
   const[data,setData]=useState([]);
@@ -33,14 +38,6 @@ function Carnaval() {
   
     const addCarnavale = (e)=>{
       e.preventDefault();
-      /*
-      'dateDebut'=>$request->input('dateDebut'),
-            'dateFin'=>$request->input('dateFin'),
-            'coordinates'=>$request->input('coordinates'),
-            'Association'=>$assoc,
-            'Ville'=>$request->input('ville'),
-            'location'=>$request->input('location')
-      */
       let data={
         dateDebut:dateDebut,
         dateFin:dateFin,
@@ -57,7 +54,8 @@ function Carnaval() {
   
   return (
     <div className='w-full h-full flex flex-col'>
-     <button onClick={toggleOpen} className='self-end bg-green-600 text-white font-medium px-2 py-1 rounded-lg shadow-md'>Nouveau</button>
+      <Informative bg="bg-primary" title="la list des carnavale" icon="fa-solid fa-caravan" />
+     {user.role==4 &&  <button onClick={toggleOpen} className='self-end bg-green-600 text-white font-medium px-2 py-1 rounded-lg shadow-md'>Nouveau</button>}
      {/* add new  */}
      <form className={`${open ? 'flex' :'hidden'} w-full  flex-col  bg-primary text-white my-2 py-2 px-1 shadow-md rounded-sm ease-in-out duration-1000`}>
       <div className='flex justify-evenly items-center'>
