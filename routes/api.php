@@ -46,11 +46,12 @@ Route::post('/addParticipationUrgence',[HomeController::class,'addParticipationU
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
     Route::get('/demandesCitoyen',[HomeController::class,'getDemandeCitoyen']);
-    
+     Route::get('/carnavaleAssoc',[DashboardController::class,'carnavaleAssoc']);
     // Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
     // Route::get('/associations',[DashboardController::class,'getAssociation']);
     // Route::get('/demandes',[DashboardController::class,'getDemandes']);
 
+    Route::post('editCarnavale',[DashboardController::class,'editCarnavale']);
     Route::post('verifyAssociation',[DashboardController::class,'verifyAssociation']);
     Route::post('/addDemande',[HomeController::class,'addDemande']);
     Route::post('/addParticipationCarnavale',[HomeController::class,'addParticipationCarnavale']);

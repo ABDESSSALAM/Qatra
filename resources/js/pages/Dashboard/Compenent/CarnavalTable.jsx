@@ -25,9 +25,9 @@ function CarnavalTable(props) {
   
     const ROW_TR_STYLE="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700";
     const ROW_TH_STYLE="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap";
-    const dataRow=data.map((row,idx)=>{
+    const dataRow=data.map((row)=>{
         return(
-            <tr key={idx} className={ROW_TR_STYLE}>
+            <tr key={row.IdCarnaval} className={ROW_TR_STYLE}>
                 <th scope='row' className={ROW_TH_STYLE}>
                     {row.location.toUpperCase()}
                 </th>
@@ -41,7 +41,7 @@ function CarnavalTable(props) {
                     {row.nomVille}
                 </td>
                 {user.role==4 && <td className="px-6 py-4 text-right">
-                    <button href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</button>
+                    <button onClick={()=>{props.handleEdit(row.IdCarnaval,row.location,row.dateDebut,row.dateFin,row.Ville)}} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</button>
                 </td> } 
             </tr>
         )

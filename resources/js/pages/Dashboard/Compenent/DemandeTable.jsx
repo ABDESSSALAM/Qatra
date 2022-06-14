@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React,{useContext} from 'react'
 import axios_api from '../../../CONF_AXIOS';
-
+import { UserContext } from '../../../../Context/UserContext';
 function DemandeTable(props) {
-    
+    const {user}=useContext(UserContext);
+
     const valider = (code,ville)=>{
        
         const data={Ville:ville,codeD:code}
@@ -37,10 +38,12 @@ function DemandeTable(props) {
                 <td className="px-6 py-4">
                     {row.DateUrg.slice(0,10)}
                 </td>
-                
+                {user.role==4 && 
                 <td className="px-6 py-4 text-right">
                     <button onClick={()=>valider(row.CodeD,row.Ville)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Valider</button>
                 </td>
+                }
+                
             </tr>
         )
     })

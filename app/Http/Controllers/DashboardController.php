@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Models\Association;
 use App\Models\Carnavale;
 use App\Models\Urgence;
-
+use Exception;
 class DashboardController extends Controller
 {
     //$role =Auth::user()->role;
@@ -133,7 +133,7 @@ class DashboardController extends Controller
         //only for association
         $user=Auth::user();
         $role =$user->role;
-        if($role!=3){
+        if($role!=4){
             return response([
                 'message'=>'not allowed'
             ]);
@@ -157,6 +157,53 @@ class DashboardController extends Controller
         }
     }
 
+    //update carnavale
+    public function editCarnavale(Request $request){
+        $user=Auth::user();
+        $role =$user->role;
+        if($role!=4){
+            return response([
+                'message'=>'not allowed'
+            ]);
+        }
+        $assoc=DB::table('associations')
+        ->where('responsable',$user->id)
+        ->get()
+        ->first()->IdAssoc;
+        try{
+            DB::beginTransaction();
+            DB::table('carnavales')
+            ->where('IdCarnaval',$request->input('idCarnavle'))
+            ->update([
+                'dateDebut'=>$request->input('dateDebut'),
+                'dateFin'=>$request->input('dateFin'),
+                'Association'=>$assoc,
+                'Ville'=>$request->input('ville'),
+                'location'=>$request->input('location')
+            ]);
+            DB::commit();
+            return response(['message'=>'ok']);    
+            
+        }catch(Exception $ex){
+            DB::rollback();
+            return response(['message'=>$ex->getMessage()]);
+        }
+        $carnavale=Carnavale::create([
+            'dateDebut'=>$request->input('dateDebut'),
+            'dateFin'=>$request->input('dateFin'),
+            'coordinates'=>$request->input('coordinates'),
+            'Association'=>$assoc,
+            'Ville'=>$request->input('ville'),
+            'location'=>$request->input('location')
+        ]);
+        if($carnavale){
+            return response([
+                'message'=>'ok'
+            ]);
+        }
+    }
+    
+
     public function getDemandes(){
 
         $urgence=DB::table('demandes')
@@ -174,7 +221,7 @@ class DashboardController extends Controller
         //only for association
         $user=Auth::user();
         $role =$user->role;
-        if($role!=3){
+        if($role!=4){
             return response([
                 'message'=>'not allowed'
             ]);
@@ -196,8 +243,26 @@ class DashboardController extends Controller
         }
     }
 
-    public function getCopleteUrgences(){
-        
+    public function carnavaleAssoc(){
+        $user=Auth::user();
+        $role =$user->role;
+        if($role!=4){
+            return response([
+                'message'=>'not allowed'
+            ]);
+        }
+        $assoc=DB::table('associations')
+        ->where('responsable',$user->id)
+        ->get()
+        ->first()->IdAssoc;
+
+        $carnavales=DB::table('carnavales')
+        ->where('Association',1)
+        ->join('villes','carnavales.Ville','=','villes.id')
+        ->select('carnavales.*','villes.nomVille')
+        ->orderBy('dateDebut','DESC')
+        ->get();
+        return response()->json($carnavales);;
     }
 
 
