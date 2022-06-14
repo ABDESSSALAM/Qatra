@@ -1,4 +1,4 @@
-import { createContext,useState,useEffect } from "react";
+import { createContext,useContext,useState,useEffect } from "react";
 import axios_api from "../js/CONF_AXIOS";
 export const UserContext=createContext({
   user:{},
@@ -11,7 +11,10 @@ export const UserProvider=({children})=>{
       axios_api.get('user')
         .then(res=>{
           if(res.status==200){
-            setUser(res.data)
+            let data=res.data
+            data={...data,...{isAuth:true}}
+            setUser(data)
+            
             
           }else if(res.status==401){
             setUser({})
@@ -29,3 +32,6 @@ export const UserProvider=({children})=>{
     )
 }
 
+export const useAuth=()=>{
+  return useContext(UserContext);
+}

@@ -6,9 +6,12 @@ import CitoyenProfile from './CitoyenProfile';
 import { UserContext } from '../../../Context/UserContext';
 import axios_api from '../../CONF_AXIOS';
 function Profile() {
-  //const params=useParams();
+  const params=useParams();
 
   const {user,setUser}=useContext(UserContext);
+  if(user.id!=params.id){
+    return <Navigate to="/" />
+  }
   const [logout,setLogout]=useState(false)
   const LogOut = async ()=>{
     await axios_api.post('logout')

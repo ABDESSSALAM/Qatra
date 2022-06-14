@@ -19,7 +19,7 @@ import HomeCentre from "./pages/Home/HomeCentre";
 
 import HomeAdvice from "./pages/Home/HomeAdvice";
 import HomeImportance from "./pages/Home/HomeImportance";
-
+import Level3 from "./ProtectedRoutes/Level3";
 import WaitAssoc from "./pages/WaitAssoc";
 
 function View() {
@@ -48,6 +48,7 @@ function View() {
             </Route>
             
             {/* user role 3 and 4 routers */}
+            <Route element={<Level3/>}>
             <Route path="dashboard" element={
                 <>
                 
@@ -72,7 +73,8 @@ function View() {
                 <Route path="association" element={<Association/>}/>  
                 <Route path="statistic" element={<Statistics/>}/>  
                 <Route path="demandes" element={<Demandes/>}/>  
-            </Route>  
+            </Route>
+        </Route>  
         </Route>
         
 

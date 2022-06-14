@@ -4,13 +4,13 @@ import { UserContext } from '../../Context/UserContext';
 
 const useAuth=()=>{
     const {user}=useContext(UserContext)
-    console.log(user)
-    return user &&  (user.role==2 || user.role==1)
+  
+    return user &&  (user.role==4 || user.role==5)
 }
-function Level2() {
+function Level3() {
   const isAuth=useAuth();
-  return isAuth ? <Outlet/> : <Navigate to="/login" />
+  return isAuth ? <Outlet/> : <Navigate to="/" />
 }
 
 
-export default Level2
+export default Level3
