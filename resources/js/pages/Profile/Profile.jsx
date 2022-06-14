@@ -1,5 +1,5 @@
 import React,{useContext,useState,useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import HomeLayout from '../Home/Components/HomeLayout';
 import VolontaireProfile from './VolontaireProfile';
 import CitoyenProfile from './CitoyenProfile';
@@ -8,11 +8,21 @@ import axios_api from '../../CONF_AXIOS';
 function Profile() {
   //const params=useParams();
 
-  const {user}=useContext(UserContext);
-  
+  const {user,setUser}=useContext(UserContext);
+  const [logout,setLogout]=useState(false)
   const LogOut = async ()=>{
     await axios_api.post('logout')
-    .then(res=>console.log(res.data))
+    .then(res=>{
+      if( res.data.message=="Success"){
+          setLogout(true);
+      }
+       
+    })
+  }
+  if(logout){
+    setUser({})
+    return <Navigate to='/' />
+
   }
   return (
        <HomeLayout>

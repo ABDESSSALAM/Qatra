@@ -2,6 +2,7 @@ import React,{useContext,useState,useEffect} from 'react'
 import { Navigate, } from 'react-router-dom';
 import { UserContext } from '../../../Context/UserContext';
 import axios_api from '../../CONF_AXIOS';
+
 function Login() {
   const inputStyle='text-lg outline-none rounded-md px-2 py-1';
   const {user,setUser}=useContext(UserContext)
@@ -36,9 +37,11 @@ function Login() {
 
   
   if(logged){
-    switch(user.role){
-      case 3:
+    if(user.role==4 || user.role==5){
         return <Navigate to="/dashboard" />
+    }
+    if(user.role==3){
+      return <Navigate to="/waiting" />
     }
 
     return <Navigate to={`/profile/${user.id}`} />

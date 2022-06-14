@@ -14,7 +14,7 @@ function Cards() {
   },[])
 
   const displayCarnavales=carnavale.map((item,idx)=>{
-    return <Card key={idx} localisation={item.location} debut={item.dateDebut} fin={item.dateFin} />
+    return <Card IdCarnaval={item.IdCarnaval} key={idx} localisation={item.location} debut={item.dateDebut} fin={item.dateFin} />
   }
      )
   return (

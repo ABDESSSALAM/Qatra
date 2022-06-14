@@ -20,7 +20,7 @@ class AuthController extends Controller
 
         //step 2
         $role=$request->input('role');
-        if($role != 1 && $role != 2 && $role != 3){
+        if($role != 1 && $role != 2 && $role != 3 && $role != 5){
             return response([
                 "role"=>$role,
                 'message'=>'unable to create user with this role'

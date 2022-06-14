@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Carnavale;
 use App\Models\Demandes;
 use Illuminate\Support\Facades\Auth;
-
+use Exception;
 class HomeController extends Controller
 {
    
@@ -153,5 +153,23 @@ class HomeController extends Controller
                     'message'=>'ok'
                 ]);
             }
+    }
+
+    public function addParticipationCarnavale(Request $request){
+        $user=Auth::user();
+        try{
+            DB::beginTransaction();
+            DB::table('carnaval_volontaires')
+             ->insert([
+                'IdVolontaire'=>$user->id,
+                'IdCarnaval'=>$request->input('Idcarnavale')
+            ]);
+            DB::commit();
+            return response(['message'=>'ok']);
+        }catch(Exception $e){
+                DB::rollback();
+                return response(['message'=>$e->getMessage()]);
+        }
+        
     }
 }

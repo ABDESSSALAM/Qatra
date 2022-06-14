@@ -1,6 +1,5 @@
 import { createContext,useState,useEffect } from "react";
 import axios_api from "../js/CONF_AXIOS";
-//export const UserContext=createContext(null)
 export const UserContext=createContext({
   user:{},
   setUser:()=>{}      
@@ -22,7 +21,7 @@ export const UserProvider=({children})=>{
     const contexValue={
        user,setUser
     };
-    console.log('from conext',contexValue)
+   
     return (
         <UserContext.Provider value={contexValue}>
             {children}

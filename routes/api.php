@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/demandesCitoyen',[HomeController::class,'getDemandeCitoyen']);
 
     Route::post('/addDemande',[HomeController::class,'addDemande']);
+    Route::post('/addParticipationCarnavale',[HomeController::class,'addParticipationCarnavale']);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/addCarnavale',[DashboardController::class,'addCarnavale']);
     Route::post('/addUrgence',[DashboardController::class,'AddUrgence']);
