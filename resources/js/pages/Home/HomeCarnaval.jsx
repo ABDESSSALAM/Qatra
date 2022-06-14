@@ -14,29 +14,30 @@ function HomeCarnaval() {
     .then(res=>setVilles(res.data))
   },[])
   const ListVilles=villes.map((ville)=><option key={ville.id}  value={ville.id} >{ville.nomVille}</option>)
-  const [idVille,setIdVille]=useState(0);
+  
   useEffect( ()=>{
     axios_api.get(url).then(res=>{
     setCarnavale(res.data)
     });
     
-  },[])
-  console.log(url)
+  },[url])
+ 
   const displayCarnavales=carnavale.map((item,idx)=>{
     return <Card IdCarnaval={item.IdCarnaval} key={idx} localisation={item.location} debut={item.dateDebut} fin={item.dateFin} />
   }
      )
- const refresh = (e)=>{e.preventDefault()}
+
   return (
     <HomeLayout>
       <form className='flex justify-end items-center bg-primary py-2 px-1 text-white rounded-md shadow-lg mx-2'>
         <div className='mx-12'>
-            <span className='text-xl font-normal mr-1'>Ville :</span>
+        <span  onClick={()=>setUrl('carnavale/all')}  className='bg-white text-primary rounded-lg shadow-xl py-1 px-2 uppercase text-lg mx-5 font-semibold hover:bg-gray-100'>tout</span>
+            {/* <span className='text-xl font-normal mr-1'>Ville :</span> */}
             <select  onChange={(e)=>setUrl('carnavale/ville/'+e.target.value)} name="ville" className='text-black outline-none text-lg py-1 px-2 rounded-md ' >
                 {ListVilles}
             </select>
         </div>
-        <button  onClick={refresh} type="submit" className='bg-white text-primary rounded-lg shadow-xl py-1 px-2 uppercase text-lg mx-2 font-semibold hover:bg-gray-100'>rechercher</button>
+        
     </form>
     <div className='flex flex-wrap justify-center container w-11/12  my-2 cursor-pointer'>
       {carnavale.length==0 && <h3>no data to display</h3>}

@@ -6224,18 +6224,11 @@ function HomeCarnaval() {
       children: ville.nomVille
     }, ville.id);
   });
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      idVille = _useState8[0],
-      setIdVille = _useState8[1];
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     _CONF_AXIOS__WEBPACK_IMPORTED_MODULE_4__["default"].get(url).then(function (res) {
       setCarnavale(res.data);
     });
-  }, []);
-  console.log(url);
+  }, [url]);
   var displayCarnavales = carnavale.map(function (item, idx) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Card__WEBPACK_IMPORTED_MODULE_5__["default"], {
       IdCarnaval: item.IdCarnaval,
@@ -6244,19 +6237,17 @@ function HomeCarnaval() {
       fin: item.dateFin
     }, idx);
   });
-
-  var refresh = function refresh(e) {
-    e.preventDefault();
-  };
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("form", {
       className: "flex justify-end items-center bg-primary py-2 px-1 text-white rounded-md shadow-lg mx-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "mx-12",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-          className: "text-xl font-normal mr-1",
-          children: "Ville :"
+          onClick: function onClick() {
+            return setUrl('carnavale/all');
+          },
+          className: "bg-white text-primary rounded-lg shadow-xl py-1 px-2 uppercase text-lg mx-5 font-semibold hover:bg-gray-100",
+          children: "tout"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("select", {
           onChange: function onChange(e) {
             return setUrl('carnavale/ville/' + e.target.value);
@@ -6265,12 +6256,7 @@ function HomeCarnaval() {
           className: "text-black outline-none text-lg py-1 px-2 rounded-md ",
           children: ListVilles
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-        onClick: refresh,
-        type: "submit",
-        className: "bg-white text-primary rounded-lg shadow-xl py-1 px-2 uppercase text-lg mx-2 font-semibold hover:bg-gray-100",
-        children: "rechercher"
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "flex flex-wrap justify-center container w-11/12  my-2 cursor-pointer",
       children: [carnavale.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
