@@ -39,7 +39,7 @@ function Register() {
   return (
     <>
       
-      <form className='flex flex-col w-full '>
+      <form className='flex flex-col w-full h-97 '>
          <Progress step={step} />
       
          <RoleContext.Provider value={RoleValue}>

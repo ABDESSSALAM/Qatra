@@ -33,20 +33,17 @@ Route::prefix('urgences')->group(function(){
     
 });
 
-//test
-Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
-Route::get('/associations',[DashboardController::class,'getAssociation']);
-Route::get('/demandes',[DashboardController::class,'getDemandes']);
-Route::get('/associationActif',[DashboardController::class,'associationActif']);
-Route::get('/associationNonActif',[DashboardController::class,'associationNonActif']);
 
-//test
-Route::post('/addParticipationUrgence',[HomeController::class,'addParticipationUrgence']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
     Route::get('/demandesCitoyen',[HomeController::class,'getDemandeCitoyen']);
-     Route::get('/carnavaleAssoc',[DashboardController::class,'carnavaleAssoc']);
+    Route::get('/carnavaleAssoc',[DashboardController::class,'carnavaleAssoc']);
+    Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
+    Route::get('/associations',[DashboardController::class,'getAssociation']);
+    Route::get('/demandes',[DashboardController::class,'getDemandes']);
+    Route::get('/associationActif',[DashboardController::class,'associationActif']);
+    Route::get('/associationNonActif',[DashboardController::class,'associationNonActif']);
     // Route::get('/volontaires',[DashboardController::class,'getVolontaires']);
     // Route::get('/associations',[DashboardController::class,'getAssociation']);
     // Route::get('/demandes',[DashboardController::class,'getDemandes']);
@@ -58,6 +55,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/addCarnavale',[DashboardController::class,'addCarnavale']);
     Route::post('/addUrgence',[DashboardController::class,'AddUrgence']);
-    // Route::post('/addParticipationUrgence',[HomeController::class,'addParticipationUrgence']);
+    Route::post('/addParticipationUrgence',[HomeController::class,'addParticipationUrgence']);
 });
 

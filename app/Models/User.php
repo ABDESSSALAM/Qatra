@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     //add telephone to users
+    
     protected $fillable = [
         'nom',
         'prenom',

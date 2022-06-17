@@ -12,6 +12,9 @@ function TopHeader() {
       const link='/profile/'+user.id;
       
       loginState={ title:'profile',link:link}
+      if(user.role==4 || user.role==5){
+        loginState={ title:'dashboard',link:'/dashboard'}
+      }
   }
 
   const navItems=[

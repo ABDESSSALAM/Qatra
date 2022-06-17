@@ -2115,16 +2115,18 @@ var UserProvider = function UserProvider(_ref) {
       setUser = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    _js_CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__["default"].get('user').then(function (res) {
-      if (res.status == 200) {
-        var data = res.data;
-        data = _objectSpread(_objectSpread({}, data), {
-          isAuth: true
-        });
-        setUser(data);
-      } else if (res.status == 401) {
-        setUser({});
-      }
+    (function () {
+      _js_CONF_AXIOS__WEBPACK_IMPORTED_MODULE_1__["default"].get('user').then(function (res) {
+        if (res.status == 200) {
+          var data = res.data;
+          data = _objectSpread(_objectSpread({}, data), {
+            isAuth: true
+          });
+          setUser(data);
+        } else if (res.status == 401) {
+          setUser({});
+        }
+      });
     });
   }, []);
   var contexValue = {
@@ -2189,7 +2191,8 @@ var useAuth = function useAuth() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_1__.UserContext),
       user = _useContext.user;
 
-  console.log(user);
+  var test = user.role == 2 || user.role == 1;
+  console.log(test);
   return user && (user.role == 2 || user.role == 1);
 };
 
@@ -2228,6 +2231,9 @@ var useAuth = function useAuth() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_Context_UserContext__WEBPACK_IMPORTED_MODULE_1__.UserContext),
       user = _useContext.user;
 
+  var test = user.role == 4 || user.role == 5;
+  console.log(user);
+  console.log(test);
   return user && (user.role == 4 || user.role == 5);
 };
 
@@ -2500,7 +2506,7 @@ function AuthWrapper() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Home_Components_HomeLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "w-full h-98  mt-5 flex flex-col justify-center items-center text-white bg-primary",
+      className: "w-full 2/3  mt-5 flex flex-col justify-center items-center text-white bg-primary",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "flex w-1/2 h-10 bg-green-500 mt-5 rounded-t-lg shadow-lg",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
@@ -2778,7 +2784,7 @@ function Register() {
   console.log("data :", dataUser);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
-      className: "flex flex-col w-full ",
+      className: "flex flex-col w-full h-97 ",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Progress__WEBPACK_IMPORTED_MODULE_1__["default"], {
         step: step
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(RoleContext.Provider, {
@@ -3319,6 +3325,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3333,16 +3351,16 @@ function Type(props) {
   var step = props.step;
   var data = props.data;
 
-  var prev = function prev(e) {
-    e.preventDefault();
-    props.setStep(step - 1);
-  };
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      err = _useState2[0],
+      setErr = _useState2[1];
 
   var next = function next(e) {
     e.preventDefault();
 
     if (Role == 0) {
-      alert("selectionez le type d'inscription");
+      setErr('tu peut selectioner le type d\'inscription s\'il vous plait ');
       return;
     }
 
@@ -3361,8 +3379,11 @@ function Type(props) {
   var buttonsStyle = "text-white w-1/2 py-1 font-medium text-xl shadow-lg";
   var Border = Role == 1 ? "border-4  border-gray-300 " : "";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer  h-80 ",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+    className: "w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer  h-92 ",
+    children: [err != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "text-red-600",
+      children: err
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
       className: "text-white font-semibold text-4xl uppercase",
       children: "Inscription"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -3383,18 +3404,13 @@ function Type(props) {
         className: "".concat(Border, "  bg-white text-green-700 px-4 font-semibold  rounded-lg shadow-2xl underline "),
         children: "ici"
       }), " "]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "flex justify-between w-full",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-        onClick: prev,
-        disabled: true,
-        className: "".concat(buttonsStyle, "  bg-secondary  rounded-bl-md w-1/2"),
-        children: "prev"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "flex flex-col justify-between  items-center w-full",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
         onClick: next,
-        className: "".concat(buttonsStyle, "  bg-green-500 rounded-br-mg w-1/2"),
-        children: "next"
-      })]
+        className: "".concat(buttonsStyle, "  bg-green-500 rounded-lg  w-1/2"),
+        children: "suivant"
+      })
     })]
   });
 }
@@ -3456,52 +3472,116 @@ function InfoUser(props) {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      prenom = _useState4[0],
-      setprenom = _useState4[1];
+      nomErr = _useState4[0],
+      setNomErr = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      email = _useState6[0],
-      setemail = _useState6[1];
+      prenom = _useState6[0],
+      setprenom = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      password = _useState8[0],
-      setpassword = _useState8[1];
+      prenomErr = _useState8[0],
+      setprenomErr = _useState8[1];
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      password_conf = _useState10[0],
-      setpassword_conf = _useState10[1];
+      email = _useState10[0],
+      setemail = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
-      telephone = _useState12[0],
-      settelephone = _useState12[1];
+      emailERR = _useState12[0],
+      setEmailERR = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      password = _useState14[0],
+      setpassword = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      passErr = _useState16[0],
+      setPassErr = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState18 = _slicedToArray(_useState17, 2),
+      password_conf = _useState18[0],
+      setpassword_conf = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState20 = _slicedToArray(_useState19, 2),
+      passConfErr = _useState20[0],
+      setPassConfErr = _useState20[1];
+
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState22 = _slicedToArray(_useState21, 2),
+      telephone = _useState22[0],
+      settelephone = _useState22[1];
+
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState24 = _slicedToArray(_useState23, 2),
+      teleErr = _useState24[0],
+      setTeleErr = _useState24[1];
 
   var next = function next(e) {
-    e.preventDefault(); //validation
+    e.preventDefault();
+    var err = false;
+    var regChars = /^[a-zA-Z]+$/; //validation
 
-    var data = props.data;
-    var newData = {
-      nom: nom,
-      prenom: prenom,
-      email: email,
-      password: password,
-      telephone: telephone
-    };
-    data = _objectSpread(_objectSpread({}, data), newData);
-    props.setDataUser(data);
-    props.setStep(step + 1);
+    if (nom.trim() == '') {
+      setNomErr("obligatoire");
+      err = true;
+    }
+
+    if (prenom.trim() == '') {
+      setprenomErr("obligatoire");
+      err = true;
+    }
+
+    if (email.trim() == '') {
+      setEmailERR("obligatoire");
+      err = true;
+    }
+
+    if (password.trim() == '') {
+      setPassErr("obligatoire");
+      err = true;
+    }
+
+    if (password_conf.trim() == '') {
+      setPassConfErr("obligatoire");
+      err = true;
+    }
+
+    if (telephone.trim() == '') {
+      setTeleErr("obligatoire");
+      err = true;
+    }
+
+    if (!err) {
+      var data = props.data;
+      var newData = {
+        nom: nom,
+        prenom: prenom,
+        email: email,
+        password: password,
+        telephone: telephone
+      };
+      data = _objectSpread(_objectSpread({}, data), newData);
+      props.setDataUser(data);
+      props.setStep(step + 1);
+    }
   };
 
-  var inputStyle = " rounded-md px-3 text-xl outline-none py-1";
+  var inputStyle = " rounded-md px-3 text-xl outline-none py-1 my-1";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer h-80",
+    className: "w-full bg-primary px-4 py-2 flex flex-col items-center justify-between shadow-lg cursor-pointer h-92",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "w-full h-full flex flex-col px-3 items-stretch justify-between py-3",
+      className: "w-full h-full flex flex-col px-3 items-stretch justify-between py-3 ",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "flex justify-between",
+        className: "flex justify-between mb-2 items-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
           type: "text",
           onChange: function onChange(e) {
@@ -3510,6 +3590,9 @@ function InfoUser(props) {
           name: "Fname",
           placeholder: "Nom",
           className: "".concat(inputStyle, " w-2/5")
+        }), nomErr != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "text-red-600 font-semibold",
+          children: nomErr
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
           type: "text",
           onChange: function onChange(e) {
@@ -3518,6 +3601,9 @@ function InfoUser(props) {
           name: "Lname",
           placeholder: "Pr\xE9nom",
           className: "".concat(inputStyle, " w-2/5")
+        }), prenomErr != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "text-red-600 font-semibold",
+          children: prenomErr
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "email",
@@ -3527,6 +3613,9 @@ function InfoUser(props) {
         name: "Email",
         placeholder: "Email",
         className: "".concat(inputStyle)
+      }), emailERR != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-red-600 font-semibold",
+        children: emailERR
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "password",
         onChange: function onChange(e) {
@@ -3535,6 +3624,9 @@ function InfoUser(props) {
         name: "Pass",
         placeholder: "Mot de pass",
         className: "".concat(inputStyle)
+      }), passErr != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-red-600 font-semibold",
+        children: passErr
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "password",
         onChange: function onChange(e) {
@@ -3543,6 +3635,10 @@ function InfoUser(props) {
         name: "Pass_Conf",
         placeholder: "Confirmez mot de pass",
         className: "".concat(inputStyle)
+      }), passConfErr != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-red-600 font-semibold",
+        n: true,
+        children: passConfErr
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "text",
         onChange: function onChange(e) {
@@ -3551,17 +3647,20 @@ function InfoUser(props) {
         name: "Telephone",
         placeholder: "T\xE9l\xE9phone",
         className: "".concat(inputStyle)
+      }), teleErr != '' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-red-600 font-semibold",
+        children: teleErr
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "flex justify-between w-full",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         onClick: prev,
         className: "".concat(buttonsStyle, "  bg-secondary  rounded-bl-md w-1/2"),
-        children: "prev"
+        children: "pr\xE9c\xE9dent"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         onClick: next,
         className: "".concat(buttonsStyle, "  bg-green-500 rounded-br-mg w-1/2"),
-        children: "next"
+        children: "suivant"
       })]
     })]
   });
@@ -4780,12 +4879,12 @@ function UrgenceTable(props) {
 
   var pending = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
     className: "bg-yellow-300 text-black font-semibold px-2 py-1 rounded-lg shadow-sm",
-    children: "pending"
+    children: "pas encore"
   });
 
   var done = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
     className: "bg-green-400 text-black font-semibold px-2 py-1 rounded-lg shadow-sm",
-    children: "done"
+    children: "complete"
   });
 
   var ROW_TR_STYLE = " border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700";
@@ -5972,6 +6071,13 @@ function TopHeader() {
       title: 'profile',
       link: link
     };
+
+    if (user.role == 4 || user.role == 5) {
+      loginState = {
+        title: 'dashboard',
+        link: '/dashboard'
+      };
+    }
   }
 
   var navItems = [{

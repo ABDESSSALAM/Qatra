@@ -4,7 +4,8 @@ import { UserContext } from '../../Context/UserContext';
 
 const useAuth=()=>{
     const {user}=useContext(UserContext)
-    console.log(user)
+    const test= (user.role==2 || user.role==1);
+    console.log(test)
     return user &&  (user.role==2 || user.role==1)
 }
 function Level2() {

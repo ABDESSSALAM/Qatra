@@ -7,7 +7,9 @@ export const UserContext=createContext({
 
 export const UserProvider=({children})=>{
     const [user,setUser]=useState({});
+    
     useEffect(()=>{
+      ()=>{
       axios_api.get('user')
         .then(res=>{
           if(res.status==200){
@@ -20,6 +22,7 @@ export const UserProvider=({children})=>{
             setUser({})
           }
         })
+      } 
     },[])
     const contexValue={
        user,setUser
